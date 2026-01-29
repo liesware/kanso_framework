@@ -1,6 +1,15 @@
 # Kanso Framework
 LaTeX source of the Kanso Framework — an open operational simplicity framework to measure and reduce the cost of complexity in modern organizations.
 
+## Download
+
+The latest public release of the Kanso Framework is **v0.9.0**.
+
+**PDF (Spanish)**  
+https://github.com/liesware/kanso_framework/releases/tag/v0.9.0
+
+The PDF is published as a GitHub Release asset and is not tracked in the repository.
+
 # Kanso Framework — LaTeX Source
 
 **Kanso Framework** is an open-source operational simplicity framework designed to **identify, quantify, and reduce the hidden cost of complexity** in modern organizations.
