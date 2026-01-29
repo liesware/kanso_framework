@@ -1,0 +1,1042 @@
+\chapter{La Implementación}\label{chap:three}
+
+% #################################################
+% #################################################
+\section{Roles y Responsabilidades}
+
+\textbf{Objetivo}\\
+Definir roles y responsabilidades dentro del framework para tener claridad. Kanso utiliza 3 roles que evolucionan según la fase de adopción, manteniendo la simplicidad operativa como principio rector.
+\\
+\\
+\textbf{Filosofía de Roles en Kanso}
+
+\textit{``Los roles no son puestos permanentes, son funciones que emergen según el contexto.''}
+
+\begin{itemize}
+    \item Los roles se activan progresivamente según madurez
+    \item El ownership es compartido y rotativo
+    \item La complejidad de roles crece solo si agrega valor
+    \item Cada rol tiene fronteras claras para evitar confusión
+\end{itemize}
+
+Resumen de Roles por Fase
+
+\begin{center}
+\small
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Rol} & \textbf{Kanso Lite} & \textbf{Kanso Core} & \textbf{Kanso Full} \\ \hline
+Kanso Lead & Formal & Formal & Formal \\ \hline
+Friction Resolvers & Informal & Semi-formal & Formal \\ \hline
+Business Link & No existe & Semi-formal & Formal \\ \hline
+\end{tabular}
+\end{center}
+
+\hrule
+% #################################################
+% #################################################
+\section{Kanso Lead: El Facilitador y Documentador}
+
+Naturaleza del rol: Detective + Facilitador de Información + Archivista\\
+
+Kanso Lead: Rol dedicado a la detección, documentación y facilitación de la reducción de fricciones.
+Equivalencias según contexto organizacional:
+
+\begin{itemize}
+    \item En equipos ágiles: puede ser el Scrum Master o Agile Coach
+    \item En equipos de producto: puede ser un PM con enfoque en eficiencia
+    \item En equipos técnicos: puede ser un Staff Engineer o SRE con ownership de operaciones
+    \item En organizaciones maduras: puede ser un rol dedicado (Operational Excellence Lead)
+\end{itemize}
+
+\textbf{Responsabilidades Principales}
+\\
+\\
+Detección Proactiva de Fricciones
+\begin{itemize}
+    \item Observa procesos, métricas y quejas recurrentes
+    \item Identifica patrones de fricción antes de que escalen
+    \item No espera reportes pasivos, busca activamente
+    \item Realiza entrevistas breves (15min) para validar fricciones
+\end{itemize}
+
+Facilitación de Friction RCA Colaborativo
+\begin{itemize}
+    \item Convoca y modera sesiones Friction RCA con Friction Resolvers
+    \item Hace preguntas causales: ``¿Por qué ocurre esto?'' (3 whys)
+    \item No propone soluciones, facilita que el equipo las encuentre
+    \item Documenta causas raíz y contramedidas propuestas
+\end{itemize}
+
+Documentación de Implementación
+\begin{itemize}
+    \item Registra Friction RCA completo en Friction Ledger
+    \item Trabaja con el Friction Resolvers para documentar ``Pasos para Reaplicar''
+    \item Crea mini-runbook cuando la solución es reutilizable
+    \item Asegura que criterios de éxito estén claros
+\end{itemize}
+
+Gestión del Índice de Friction RCA
+\begin{itemize}
+    \item Mantiene índice ordenado de Friction RCAs cerrados
+    \item Añade tags para facilitar búsqueda futura
+    \item Registra reaplicaciones cuando un Friction RCA se reutiliza
+    \item Tiempo: 2-3 minutos por Friction RCA cerrado
+\end{itemize}
+
+Cálculo y Reporte de IK
+\begin{itemize}
+    \item Calcula Índice Kanso mensualmente
+    \item Actualiza Harmony Board con métricas clave
+    \item Presenta resultados a Business Link o liderazgo
+    \item Identifica tendencias y fricciones críticas
+\end{itemize}
+
+Facilitación de Ceremonias
+\begin{itemize}
+    \item Friction Review (quincenal): revisión de fricciones y quick wins
+    \item Efficiency Sync (menusual): presentación de IK y priorización
+    \item Strategic Review (trimestral): estrategia y ajuste de roadmap (en Full)
+\end{itemize}
+
+Entregables
+\begin{itemize}
+    \item Friction Ledger actualizado semanalmente
+    \item Friction Analysis Matrix Board con análisis causales completos
+    \item Documentación de Implementación con pasos de reaplicación
+    \item Índice de Friction RCAs ordenado y mantenido
+    \item IK Dashboard con métricas mensuales
+    \item Harmony Board (en fases Core/Full)
+    \item Reportes ejecutivos mensuales
+\end{itemize}
+
+Decide:
+\begin{itemize}
+    \item Cómo facilitar sesiones Friction RCA
+    \item Qué fricciones documentar (threshold: >2h/mes)
+    \item Formato y nivel de detalle en documentación
+    \item Frecuencia de ceremonias (dentro de rangos sugeridos)
+\end{itemize}
+
+No decide:
+\begin{itemize}
+    \item Qué fricciones resolver (eso es Business Link)
+    \item Cómo implementar soluciones (eso es Friction Resolvers)
+    \item Priorización estratégica (eso es Business Link)
+    \item Recursos asignados (eso es Business Link)
+\end{itemize}
+
+NO es su Rol
+\begin{itemize}
+    \item No ejecuta soluciones técnicas ni operativas
+    \item No propone contramedidas (las facilita, no las crea)
+    \item No es dueño de fricciones específicas
+    \item No diseña implementaciones técnicas
+    \item No aprueba recursos ni presupuestos
+\end{itemize}
+
+Perfil Ideal
+\begin{itemize}
+    \item Experiencia en facilitación o Scrum Master
+    \item Pensamiento sistémico y curiosidad por procesos
+    \item Habilidad para documentar claramente
+    \item No necesita ser técnico, pero debe entender el contexto
+    \item Capacidad de hacer preguntas sin juzgar
+\end{itemize}
+
+Dedicación por Fase
+\begin{center}
+\small
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Fase} & \textbf{Horas/semana} & \textbf{Puede ser} \\ \hline
+Kanso Lite & 2-4h & Part-time, rotativo \\ \hline
+Kanso Core & 4-6h & Part-time formal \\ \hline
+Kanso Full & 6-8h & Part-time o Full-time (50\%) \\ \hline
+\end{tabular}
+\end{center}
+
+Métricas de Éxito del Rol
+\begin{itemize}
+    \item Friction Ledger actualizado >90\% del tiempo
+    \item Friction RCAs cerrados tienen ``Pasos para Reaplicar'' en >70\% de casos complejos
+    \item Índice de Friction RCAs consultado antes de crear nuevo Friction RCA en >60\% de casos
+    \item IK calculado y reportado el mismo día cada mes
+    \item Ceremonias inician y terminan a tiempo
+\end{itemize}
+
+\hrule
+% #################################################
+% #################################################
+\section{Friction Resolvers: Equipo Operativo}
+
+Naturaleza del rol: Ejecutores + Diseñadores + Documentadores de Conocimiento
+
+Filosofía Core
+
+\begin{quote}
+\textit{``Los que hacen el trabajo proponen la solución y documentan el conocimiento.''}
+\end{quote}
+
+Los Friction Resolvers son los miembros del equipo operativo que:
+
+\begin{itemize}
+    \item Reportan fricciones cuando las encuentran
+    \item Participan en el análisis de causa raíz
+    \item Implementan las contramedidas aprobadas
+    \item Documentan soluciones para reaplicación
+\end{itemize}
+
+Friction Resolvers no es un rol jerárquico, es una función colectiva del equipo operativo. Todos contribuyen según capacidad, contexto y disponibilidad. El ownership es rotativo y emerge naturalmente.\\
+\\
+\textbf{Responsabilidades Principales}
+\\
+\\
+Reporte de Fricciones (Detección)
+\begin{itemize}
+    \item Reportan fricciones cuando las encuentran en su trabajo diario
+    \item Proveen evidencia: tickets, logs, tiempos medidos
+    \item No necesitan analizar causa raíz (eso se hace en Friction RCA colaborativo)
+    \item Formato simple: ``Qué ocurre, cuándo, impacto estimado''
+\end{itemize}
+
+Búsqueda de Soluciones Existentes
+\begin{itemize}
+    \item Antes de proponer nueva solución, consultan el índice de Friction RCAs
+    \item Preguntan: ``¿Alguien ya resolvió esto?''
+    \item Si existe Friction RCA similar, lo reutilizan (adaptándolo si es necesario)
+    \item Registran reaplicación en Friction RCA original
+\end{itemize}
+
+Participación en Friction RCA Colaborativo
+\begin{itemize}
+    \item Asisten a sesiones Friction RCA facilitadas por el Kanso Lead
+    \item Proponen contramedidas basadas en experiencia técnica
+    \item Discuten viabilidad, esfuerzo y riesgos
+    \item Co-crean análisis causal con el equipo
+\end{itemize}
+
+Implementación de Soluciones
+\begin{itemize}
+    \item Ejecutan contramedidas priorizadas por Business Link
+    \item Trabajan en soluciones durante ciclos normales de trabajo (sprints, etc.)
+    \item Validan que la fricción efectivamente se redujo
+    \item Reportan progreso a Kanso Lead para actualización del Ledger
+\end{itemize}
+
+Documentación de Implementación
+\begin{itemize}
+    \item Para soluciones complejas (>8h trabajo): documentan ``Pasos para Reaplicar''
+    \item Colaboran con el Kanso Lead para crear mini-runbook
+    \item Formato: 5-10 bullets, lenguaje claro, sin jerga innecesaria
+    \item Incluyen criterios de éxito: ``¿Cómo saber que funcionó?''
+\end{itemize}
+
+Ejemplo de documentación Friction Resolvers:
+\begin{quote}
+\textit{Pasos para Reaplicar (FRCA-001: CI/CD credenciales):}
+\begin{enumerate}
+    \item Instalar HashiCorp Vault agent en runners de CI/CD
+    \item Configurar dynamic secrets con TTL de 24h
+    \item Modificar pipeline YAML: reemplazar env vars por \texttt{vault:read}
+    \item Ejecutar test deploy en ambiente staging
+    \item Validar: zero fallos por credenciales en 2 semanas
+\end{enumerate}
+\end{quote}
+
+Ownership Temporal de Fricciones
+\begin{itemize}
+    \item En fases Core/Full, miembros de Friction Resolvers se auto-asignan como owners temporales
+    \item El Ownership dura solo hasta que la fricción se resuelve
+    \item No hay owners permanentes de áreas (para evitar silos)
+    \item Principio: ``El que mejor entiende la fricción, la resuelve''
+\end{itemize}
+
+Entregables
+\begin{itemize}
+    \item Reportes de fricciones con evidencia
+    \item Contramedidas propuestas en Friction RCA colaborativo
+    \item Soluciones implementadas y validadas
+    \item Sección ``Pasos para Reaplicar'' en Friction RCAs complejos (colaboración con el Kanso Lead)
+    \item Criterios de éxito documentados
+    \item Registro de reaplicaciones cuando reutilizan Friction RCA existente
+    \item Actualizaciones de progreso en el Friction Ledger
+\end{itemize}
+
+Decide:
+\begin{itemize}
+    \item Qué contramedida proponer (basado en experiencia técnica)
+    \item Cómo implementar la solución (autonomía técnica)
+    \item Nivel de detalle en documentación de pasos
+    \item Cuándo una solución es suficientemente genérica para reaplicar
+    \item Auto-asignación como owner temporal de fricción
+\end{itemize}
+
+NO decide:
+\begin{itemize}
+    \item Qué fricciones priorizar (eso es Business Link)
+    \item Recursos disponibles o deadlines (eso es Business Link)
+    \item Formato de artefactos Kanso (eso es Kanso Lead)
+\end{itemize}
+
+NO es su Rol
+\begin{itemize}
+    \item No facilita ceremonias Kanso (eso es Kanso Lead)
+    \item No mantiene Friction Ledger ni Índice de Friction RCAs (eso es Kanso Lead)
+    \item No prioriza estratégicamente (eso es Business Link)
+    \item No reporta a ejecutivos (eso es Kanso Lead)
+    \item No son owners permanentes de áreas completas
+\end{itemize}
+
+Perfil Ideal
+\begin{itemize}
+    \item Miembros regulares del equipo operativo (devs, SREs, PMs, analistas)
+    \item Conocimiento técnico/operativo del dominio
+    \item Disposición a documentar soluciones (mentalidad de compartir conocimiento)
+    \item Capacidad de proponer soluciones pragmáticas
+    \item No necesitan ser seniors, pero sí tener ownership
+\end{itemize}
+
+\textbf{Evolución del Rol por Fase}
+
+En Kanso Lite (informal):
+\begin{itemize}
+    \item Todos en el equipo son Friction Resolvers sin rol formal
+    \item Contribuyen cuando tienen tiempo/contexto
+    \item No hay asignaciones ni ceremonias adicionales
+    \item Documentación mínima (solo si la solución se repetirá)
+\end{itemize}
+
+En Kanso Core (semi-formal):
+\begin{itemize}
+    \item Friction Resolvers se auto-organiza por tipo de fricción
+    \item Aparecen owners temporales naturalmente
+    \item La Documentación se vuelve esencial para soluciones reutilizables
+    \item Participan activamente en Friction RCA colaborativos
+\end{itemize}
+
+En Kanso Full (formal):
+\begin{itemize}
+    \item Ownership claro por fricción (auto-asignado o negociado)
+    \item Lideran Friction RCA sessions de fricciones en su área de expertise
+    \item Mantienen documentación de implementación actualizado si cambia el contexto
+    \item Mentoría a otros Friction Resolvers en reaplicación de soluciones
+\end{itemize}
+
+\textit{Nota: Estas horas se distribuyen entre todo el Friction Resolvers, no por persona.}
+
+Dedicación por Fase
+\begin{center}
+\small
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Fase} & \textbf{Horas/semana/persona} & \textbf{Naturaleza} \\ \hline
+Kanso Lite & 30min & Participación en Sync, reporte ad-hoc \\ \hline
+Kanso Core & 2-3h & Implementación + documentación \\ \hline
+Kanso Full & 4-6h & Ownership formal + mentoría \\ \hline
+\end{tabular}
+\end{center}
+
+Métricas de Éxito del Rol
+
+\begin{itemize}
+    \item >70\% de soluciones implementadas reducen la fricción según validación
+    \item >70\% de Friction RCAs complejos tienen ``Pasos para Reaplicar'' documentados
+    \item >60\% de nuevas fricciones similares reutilizan Friction RCA existente
+    \item Tiempo de reaplicación <25\% del tiempo de solución original
+    \item Satisfacción del equipo con claridad de soluciones documentadas
+\end{itemize}
+
+\hrule
+% #################################################
+% #################################################
+\section{Business Link: Sponsor Ejecutivo}
+
+Naturaleza del rol: Puente Negocio-Tecnología + Asignador de Recursos
+
+Filosofía Core
+
+\begin{quote}
+\textit{``Aparece cuando el equipo necesita dirección estratégica, no supervisión operativa.''}
+\end{quote}
+
+El Business Link es el stakeholder de negocio que prioriza qué fricciones resolver según impacto estratégico 
+y disponibilidad de recursos. Equivalencias por contexto:
+
+\begin{itemize}
+    \item En startups: típicamente el CTO o VP Engineering
+    \item En product teams: Product Director o Head of Engineering
+    \item En enterprise IT: IT Operations Manager o Director of Engineering Excellence
+\end{itemize}
+
+\textbf{Responsabilidades Principales}
+\\
+\\
+Priorización de Fricciones
+\begin{itemize}
+    \item Recibe reporte del Kanso Lead con fricciones y Friction RCAs propuestos
+    \item Evalúa impacto de negocio vs. esfuerzo de implementación
+    \item Decide qué fricciones atacar primero, cuáles ir a backlog
+    \item Considera estrategia de negocio, urgencia y recursos disponibles
+\end{itemize}
+
+Aprobación de Recursos
+\begin{itemize}
+    \item Aprueba tiempo del Friction Resolvers dedicado a reducción de fricciones
+    \item Puede autorizar recursos adicionales (contrataciones, herramientas)
+    \item Negocia trade-offs con otros stakeholders si hay conflictos
+    \item Protege al equipo de sobrecarga (balance entre delivery y eficiencia)
+\end{itemize}
+
+Alineación con Estrategia de Negocio
+\begin{itemize}
+    \item Conecta reducción de fricciones con OKRs/KPIs del negocio
+    \item Traduce IK en métricas que importan a ejecutivos (ROI, time-to-market, etc.)
+    \item Comunica valor de Kanso a otros líderes
+    \item Ajusta prioridades si cambia estrategia organizacional
+\end{itemize}
+
+Revisión de Resultados
+\begin{itemize}
+    \item Revisa el Harmony Board mensualmente (en Core/Full)
+    \item Valida que inversión en reducción de fricciones genera el ROI esperado
+    \item Ajusta enfoque si el IK no mejora o si hay mejor uso de recursos
+    \item Celebra wins con el equipo (reconocimiento de mejoras)
+\end{itemize}
+
+Entregables
+\begin{itemize}
+    \item Decisión de priorización de fricciones (mensual)
+    \item Aprobación de recursos asignados a reducción de complejidad
+    \item Alineación de Kanso con estrategia de negocio (trimestral en Full)
+    \item Feedback sobre ROI de iniciativas completadas
+    \item Comunicación de valor de Kanso a stakeholders externos
+\end{itemize}
+
+Decide:
+\begin{itemize}
+    \item Qué fricciones se priorizan (basado en impacto de negocio)
+    \item Cuánto tiempo de Friction Resolvers se dedica a Kanso vs. delivery
+    \item Aprobación de recursos (herramientas, contrataciones si aplica)
+    \item Ajuste de enfoque estratégico de Kanso
+\end{itemize}
+
+NO decide:
+\begin{itemize}
+    \item Cómo se implementan soluciones (eso es el Friction Resolvers)
+    \item Cómo se facilita el proceso (eso es el Kanso Lead)
+    \item Qué fricciones documentar (eso es el Kanso Lead)
+    \item Detalles técnicos de Friction RCAs (eso es el Friction Resolvers)
+\end{itemize}
+
+NO es su Rol
+\begin{itemize}
+    \item No facilita ceremonias ni Friction RCA sessions (eso es el Kanso Lead)
+    \item No ejecuta soluciones (eso es el Friction Resolvers)
+    \item No diseña contramedidas técnicas (eso es el Friction Resolvers)
+    \item No mantiene artefactos Kanso (eso es el Kanso Lead)
+    \item No es un supervisor operativo del día a día
+\end{itemize}
+
+Perfil Ideal
+\begin{itemize}
+    \item Líder con visión de negocio y técnica (CTO, VP Engineering, Product Director)
+    \item Capacidad de priorizar con criterio de ROI
+    \item Empodera equipos en lugar de microgestionar
+    \item Entiende trade-offs entre eficiencia operativa y delivery
+    \item Comunicador efectivo con stakeholders de negocio
+\end{itemize}
+
+
+\textbf{Evolución del Rol por Fase}
+
+En Kanso Lite:
+\begin{itemize}
+    \item \textbf{No existe formalmente}
+    \item El mismo equipo prioriza por sentido común
+    \item Kanso Lead consulta informalmente con líder técnico si hay duda
+\end{itemize}
+
+En Kanso Core:
+\begin{itemize}
+    \item \textbf{Sombrero temporal}
+    \item Aparece en Monthly Reviews (1h/mes)
+    \item Típicamente: Product Owner, Engineering Manager, CTO, VP of Ops
+    \item Durante la sesión, usa el ``sombrero'' de Business Link
+    \item Fuera de la sesión, vuelve a su rol normal
+\end{itemize}
+
+En Kanso Full:
+\begin{itemize}
+    \item Rol formal
+    \item Participa activamente en Harmony Sessions y Quarterly Reviews
+    \item Puede ser un comité en organizaciones grandes (Product + Engineering + Ops)
+    \item Dedicación: 2-4h/mes
+\end{itemize}
+
+Dedicación por Fase
+
+\begin{center}
+\small
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Fase} & \textbf{Horas/mes} & \textbf{Naturaleza} \\ \hline
+Kanso Lite & 0h & No existe \\ \hline
+Kanso Core & 1-2h & Sombrero temporal (Monthly Review) \\ \hline
+Kanso Full & 2-4h & Rol formal (Harmony + Quarterly) \\ \hline
+\end{tabular}
+\end{center}
+
+Métricas de Éxito del Rol
+
+\begin{itemize}
+    \item Decisiones de priorización tomadas en <30min por sesión
+    \item >70\% de fricciones priorizadas se implementan dentro del ciclo acordado
+    \item IK mejora trimestre a trimestre (validando la efectividad de la priorización)
+    \item Equipo siente que sus propuestas son escuchadas y valoradas
+    \item ROI de iniciativas Kanso es comunicado claramente a los stakeholders
+\end{itemize}
+
+\section{Comparativa de Roles}
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Dimensión} & \textbf{Kanso Lead} & \textbf{Friction Resolvers} & \textbf{Business Link} \\ \hline
+\textbf{Función principal} & Facilita y documenta & Propone y ejecuta & Prioriza y aprueba \\ \hline
+\textbf{Poder de decisión} & Cómo facilitar el proceso & Cómo implementar soluciones & Qué priorizar y recursos \\ \hline
+\textbf{Dedicación (Core)} & 4-6h/semana & 2-3h/semana/persona & 1-2h/mes \\ \hline
+\textbf{Artefactos clave} & Friction Ledger, Friction Analysis Matrix, Índice & Documentación de Implementación(pasos), Soluciones & Decisiones de priorización \\ \hline
+\textbf{Interacción con otros} & Facilita a todos & Colabora con Lead, reporta a Link & Recibe info de Lead, dirige a Friction Resolvers \\ \hline
+\textbf{NO hace} & Ejecutar, proponer, priorizar & Facilitar, mantener ledger, aprobar & Facilitar, ejecutar, documentar \\ \hline
+\textbf{Señal de éxito} & Artefactos actualizados,Friction RCAs claros & Soluciones implementadas, documentadas & IK mejorando, equipo empoderado \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Principios de Colaboración entre Roles}
+
+\begin{enumerate}
+    \item El Kanso Lead facilita, no controla: Ayuda al flujo de información, no impone decisiones.
+    \item El Friction Resolvers propone desde experiencia: Las mejores soluciones vienen de quienes hacen el trabajo.
+    \item El Business Link aparece cuando agrega valor: No supervisa día a día, solo dirige estratégicamente.
+    \item El Ownership es compartido: Todos son responsables de reducir fricciones, no solo Kanso Lead.
+    \item La Documentación es colaborativa: Kanso Lead escribe, Friction Resolvers valida y complementa.
+    \item Las Decisiones por consenso en Friction RCA: Business Link prioriza, pero Friction Resolvers puede escalar si hay desacuerdo razonable.
+\end{enumerate}
+
+\textbf{Anti-Patrones a Evitar}
+
+\begin{itemize}
+    \item Kanso Lead como cuello de botella: Si todo pasa por una persona, el framework falla. Distribuir ownership.
+    \item Friction Resolvers sin autonomía: Si no pueden proponer soluciones, se vuelven ejecutores pasivos. Empoderar.
+    \item Business Link como microgerente: Si revisa cada fricción diariamente, genera overhead. Confiar y delegar.
+    \item Roles permanentes y rígidos: Si nadie puede rotar, se crean silos. Fomentar flexibilidad.
+    \item Documentación como castigo: Si documentar se siente burocrático, nadie lo hará. Mantener simple y útil.
+\end{itemize}
+
+\textbf{Preguntas Frecuentes sobre Roles}
+\\ 
+\\ 
+\textit{¿Puede una persona tener múltiples roles?}\\ 
+Sí, especialmente en equipos pequeños. Un Tech Lead puede ser Kanso Lead + Business Link temporalmente. Lo importante es separar las funciones mentalmente.
+
+\textit{¿Qué pasa si nadie quiere ser Kanso Lead?}\\ 
+Rota el rol cada trimestre. 4-6h/semana no es una carga grande si se distribuye. Alternativamente, un PM o Scrum Master puede asumir naturalmente.
+
+\textit{¿Friction Resolvers debe documentar TODAS las soluciones?}\\ 
+No. Solo soluciones complejas (>8h trabajo) y reutilizables. Quick wins triviales no necesitan documentación extensa.
+
+\textit{¿Business Link puede ser un comité?}\\ 
+Sí, en organizaciones grandes. Ej: Product Director + Engineering Manager + Head of Ops. Lo importante es que decidan rápido (no por consenso eterno).
+
+\textit{¿Qué pasa si Business Link nunca tiene tiempo?}\\ 
+Red flag. Significa que Kanso no tiene sponsor ejecutivo. Considera escalar o implementar solo Kanso Lite (sin Business Link formal) hasta tener buy-in.
+\\ 
+\hrule
+% #################################################
+% #################################################
+\section{Unidad de Trabajo}
+
+
+\textbf{Objetivo}\\
+Detectar, clasificar, cuantificar y priorizar las fricciones operativas del equipo mediante un ciclo estructurado de observación, análisis y corrección.
+
+\textbf{Duración}\\
+2 semanas (recomendado) — Este período representa el equilibrio óptimo entre acción continua y análisis reflexivo, permitiendo capturar patrones significativos sin extender excesivamente el tiempo entre correcciones.
+\\ 
+\\ 
+\textbf{Naturaleza del Ciclo de Trabajo}
+\\ 
+El ciclo de trabajo constituye la unidad fundamental de mejora continua en Kanso. A diferencia de metodologías tradicionales centradas en entregas o cumplimiento de tareas, este ciclo opera bajo los siguientes principios:
+
+\begin{itemize}
+    \item Foco en flujo, no en output: El ciclo no mide entregas completadas ni tareas cerradas, sino la calidad del flujo operativo y la reducción sistemática de fricción.
+    \item Introspección estructurada: Funciona como el espacio designado donde la organización observa, mide y corrige su eficiencia interna de manera metódica y basada en evidencia.
+    \item Sincronización con operación: El ciclo de trabajo comienza y termina alineado con el ciclo operativo natural del equipo, respetando sus ritmos de entrega y planificación.
+    \item Responsabilidad del Kanso Lead: Este ciclo es exclusivo del Kanso Lead, quien lo utiliza para evaluar el estado del sistema, planear intervenciones y presentar las cargas de trabajo optimizadas antes del inicio del siguiente ciclo operativo del equipo.
+\end{itemize}
+
+\textbf{Estructura del Ciclo de Trabajo}
+
+El ciclo de trabajo se organiza en actividades distribuidas estratégicamente a lo largo de dos semanas, cada una con entregables específicos que alimentan el proceso de mejora continua:
+
+\begin{center}
+\small
+\begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
+\hline
+\textbf{Día/Período} & \textbf{Actividad} & \textbf{Artefactos / Resultados} \\ \hline
+Durante todo el ciclo & Detección de fricciones mediante entrevistas informales, análisis de logs, revisión de tickets y monitoreo de pipelines. & Llenado progresivo del \textit{Friction Ledger} con eventos de fricción categorizados y cuantificados. \\ \hline
+Durante todo el ciclo  & Análisis Friction RCA: evaluación de Riesgo, Frecuencia y Alcance de cada fricción detectada. & Llenado y actualización del \textit{Friction Analysis Matrix} con puntuaciones y prioridades calculadas. \\ \hline
+A la mitad del ciclo & Sesión de revisión del \textit{Friction Analysis Matrix}: validación de prioridades y aprobación de reordenamientos. & Decisiones documentadas sobre qué fricciones atacar en el siguiente ciclo operativo del equipo. \\ \hline
+Al final del ciclo & Actualización de métricas del sistema: recálculo del Índice Kanso y otras métricas derivadas. & Nuevo IK parcial, variación porcentual documentada, tendencias identificadas. \\ \hline
+Cierre del ciclo  & Generación de reporte de resultados del ciclo completo. & Minireporte visual o entrada automática en el \textit{Harmony Board} con resumen ejecutivo de mejoras implementadas. \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Criterios de Éxito}
+
+Un ciclo de trabajo se considera exitoso cuando cumple con los siguientes criterios mínimos:
+
+\begin{itemize}
+    \item Al menos 50\% de las fricciones detectadas están documentadas en el \textit{Friction Ledger}.
+    \item El \textit{Friction Analysis Matrix} contiene análisis cuantitativo completo para todas las fricciones prioritarias.
+    \item Se han aprobado al menos 3 acciones concretas de reducción de fricción para el siguiente ciclo.
+    \item El IK muestra variación medible (positiva o negativa) respecto al ciclo anterior.
+    \item El reporte de cierre está disponible para consulta del equipo antes del inicio del siguiente ciclo operativo.
+\end{itemize}
+
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Artefactos Clave}
+
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{4.5cm}|p{5cm}|}
+\hline
+Artefacto & Propósito & Contenido principal \\ \hline
+Friction Ledger & Registro vivo y cuantificable de fricciones. & ID, descripción, costo, evidencia, acción sugerida. \\ \hline
+Friction Analysis Matrix & Diagnóstico causal y reordenamiento empírico. & Causas raíz, contramedidas Kanso, impacto estimado. \\ \hline
+Harmony Board & Visión mensual y evolutiva del IK. & Indicadores, variaciones, estado de cada flujo. \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Friction Ledger} \\
+Registro centralizado, vivo y cuantificable.
+
+Columnas básicas:
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|l|p{2.5cm}|l|l|l|l|p{2cm}|p{2cm}|l|}
+\hline
+ID & Descripción & Clasificación & Horas/mes & Costo hora & Costo mensual & Evidencia & Acción sugerida & Estado \\ \hline
+F-001 & Integración CI/CD rompe credenciales & Evitable & 40 & 50 & 2,000 & Logs, Jira & Automatizar con Vault & Cerrada \\ \hline
+F-002 & Auditoría PCI trimestral & Inevitable & 20 & 70 & 1,400 & Requerimiento legal & Mantener & Abierta \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Friction Analysis Matrix} \\
+Análisis de causas.
+
+Columnas básicas:
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|l|p{2.5cm}|p{2.5cm}|l|p{2.5cm}|p{2cm}|}
+\hline
+\# & Causa raíz & Descripción / Evidencia & Nivel & Contramedida Kanso & Regla aplicable \\ \hline
+1 & Rotación de credenciales manual & Logs de fallos que muestran expiración recurrente. & Técnica & Automatizar rotación con Vault. & Automatización \\ \hline
+2 & Falta de ownership del secret store & Entrevistas con DevOps confirman ambigüedad de responsables. & Organizacional & Definir responsable de gestión de secretos. & Estandarización \\ \hline
+3 & Política de rotación no automatizada ni auditada & Documento de seguridad sin evidencia de pipeline integrado. & Proceso & Integrar rotación y auditoría en pipeline CI/CD. & Fluidez. \\ \hline
+4 & Demasiadas pasos para aprobar un despliegue & Tiempos de respuesta & Proceso & Reducir Burocracia & Simplicidad \\ \hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Harmony Board} \\ 
+Tablero mensual de control.
+
+Columnas básicas:
+
+\begin{center}
+\begin{tabular}{|p{3.5cm}|l|l|l|l|}
+\hline
+Indicador & Sept & Oct & Variación & Estado \\ \hline
+IK & 22\% & 15\% & -7 pts & OK \\ \hline
+Horas evitables & 480 & 320 & -33\% & OK \\ \hline
+Valor recuperado & \$24,000 & \$16,000 & -8k & OK \\ \hline
+Friction RCA Cerradas & 3 & 5 & +2 & OK \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Kanso sessions} \\ 
+Reuniones para revisar estados del framework.
+
+Columnas básicas:
+
+\begin{center}
+\small
+\begin{tabular}{||p{2.5cm}|p{2.5cm}|p{2cm}|p{5.5cm}||}
+\hline
+\textbf{Participantes} & \textbf{Nombre} & \textbf{Frecuencia} & \textbf{Objetivo} \\ \hline
+Kanso Lead + Friction Resolvers & Friction Review & Semana 2 de cada ciclo & Revisar Friction Ledger, priorizar Friction RCA. \\ \hline
+Kanso Lead + Business Link + Tech Leads & Efficiency Sync & Mensual & Presentar IK, validar ROI de mejoras, ajustar prioridades. \\ \hline
+Leadership team completo & Strategic Review & Cada 3 meses & Evaluar tendencias, ajustar estrategia, aprobar inversiones mayores. \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Sistema de Madurez Kanso}
+
+\textbf{Objetivo}\\
+Evaluar el progreso cultural y operativo de la organización.
+
+\begin{center}
+\begin{tabular}{|l|p{3cm}|p{6cm}|p{2cm}|}
+\hline
+Nivel & Nombre & Características & IK Promedio \\ \hline
+1 & Caótico & No hay visibilidad, alta fricción. & >25\% \\ \hline
+3 & Controlado & Quick Wins activos, ledger consistente. & >10--25\% \\ \hline
+5 & Fluido & Operación armónica, fricciones autogestionadas. & <10\% \\ \hline
+\end{tabular}
+\end{center}
+
+Meta global: mantener IK < 15\% y evolución continua de madurez.
+\\
+\\
+\hrule
+% #################################################
+% #################################################
+
+\section*{Niveles de Implementación de Kanso}
+
+Kanso reconoce que no todas las organizaciones poseen el mismo nivel de madurez operativa, recursos disponibles o necesidad de optimización. Por ello, el marco propone tres niveles de implementación progresivos que permiten adoptar la metodología de manera incremental, ajustándose al contexto específico de cada equipo u organización.
+
+\section{Kanso Lite}
+
+\textbf{Descripción}\\
+Versión mínima viable de Kanso, diseñada para equipos que inician su camino hacia la reducción sistemática de fricciones o que operan con recursos limitados. Se enfoca en los fundamentos observacionales sin requerir infraestructura compleja ni roles dedicados.
+\\
+\\
+\textbf{Perfil de Organización}
+\begin{itemize}
+    \item Equipos pequeños (3-10 personas)
+    \item Presupuesto limitado para herramientas o roles especializados
+    \item Primera aproximación a la gestión sistemática de fricciones
+    \item Cultura organizacional en fase temprana de madurez
+    \item Necesidad de demostrar valor antes de inversiones mayores
+\end{itemize}
+
+\textbf{Componentes Activos}
+\begin{itemize}
+    \item Friction Ledger simplificado: Registro básico en hoja de cálculo o documento compartido
+    \item Índice Kanso básico: Cálculo mensual manual utilizando únicamente las 3-4 métricas más accesibles
+    \item Reunión mensual de fricción: Sesión de 1 hora para revisar fricciones detectadas
+    \item Responsable rotativo: Miembro del equipo que asume el rol de observador por ciclos de 1 mes
+\end{itemize}
+
+\textbf{Artefactos Mínimos}
+\begin{center}
+\small
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Artefacto} & \textbf{Implementación en Lite} \\ \hline
+Friction Ledger & Hoja de cálculo compartida con columnas: Fecha, Descripción, Categoría, Impacto (Alto/Medio/Bajo) \\ \hline
+Índice Kanso & Cálculo manual mensual con 3-4 métricas básicas (ej: tiempo promedio de resolución, tickets bloqueados, interrupciones por día) \\ \hline
+Friction Analysis Matrix & No implementado (se usa evaluación cualitativa simple) \\ \hline
+Harmony Board & No implementado \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Ciclo de Trabajo}\\
+Ciclo mensual simplificado:
+\begin{itemize}
+    \item Semanas 1-3: Detección y registro continuo de fricciones
+    \item Semana 4: Reunión de revisión y priorización
+    \item Selección de 1-2 fricciones para resolver en el siguiente mes
+\end{itemize}
+
+\textbf{Limitaciones}
+\begin{itemize}
+    \item No hay análisis cuantitativo profundo (Friction RCA simplificado o ausente)
+    \item Métricas limitadas y actualizadas con baja frecuencia
+    \item Dependencia de percepción subjetiva para priorización
+    \item Riesgo de discontinuidad por falta de rol dedicado
+\end{itemize}
+
+\textbf{Criterio de Graduación}\\
+Un equipo debe considerar migrar a Kanso Core cuando:
+\begin{itemize}
+    \item Ha completado al menos 3 ciclos mensuales consecutivos exitosamente
+    \item El Friction Ledger contiene más de 30 entradas documentadas
+    \item La organización puede asignar al menos 25\% del tiempo de una persona al rol de Kanso Lead
+    \item Existe demanda interna por análisis más sofisticado de fricciones
+\end{itemize}
+
+\section{Kanso Core}
+
+\textbf{Descripción}\\
+Implementación completa del marco Kanso tal como fue diseñado originalmente. Incluye todos los componentes metodológicos, roles definidos, artefactos completos y ciclos estructurados. Representa el nivel recomendado para la mayoría de las organizaciones maduras.
+\\
+\\
+\textbf{Perfil de Organización}
+\begin{itemize}
+    \item Equipos medianos a grandes (10-50 personas o múltiples equipos)
+    \item Capacidad de asignar un Kanso Lead dedicado (50-100\% de su tiempo)
+    \item Infraestructura técnica para automatización y monitoreo
+    \item Cultura organizacional abierta a la mejora continua basada en datos
+    \item Presupuesto disponible para herramientas y capacitación
+\end{itemize}
+
+\textbf{Componentes Activos}
+\begin{itemize}
+    \item Rol formal de Kanso Lead: Persona dedicada con responsabilidad y autoridad sobre el proceso
+    \item Friction Ledger completo: Sistema estructurado de registro con categorización detallada
+    \item Friction Analysis Matrix: Análisis cuantitativo sistemático de Riesgo, Frecuencia y Alcance
+    \item Índice Kanso: Cálculo quincenal o semanal con conjunto completo de métricas
+    \item Harmony Board: Dashboard ejecutivo para visualización de tendencias
+    \item Ciclo de trabajo de 2 semanas: Estructura completa según especificación estándar
+\end{itemize}
+
+\textbf{Artefactos Completos}
+\begin{center}
+\small
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Artefacto} & \textbf{Implementación en Core} \\ \hline
+Friction Ledger & Base de datos o sistema de tickets estructurado con campos completos: ID, timestamp, categoría, descripción detallada, equipo afectado, tiempo perdido estimado, estado, resolución \\ \hline
+Friction Analysis Matrix & Matriz cuantitativa con scoring automatizado, actualización semanal, visualización priorizada \\ \hline
+Índice Kanso & Cálculo automatizado quincenal/semanal con 8-12 métricas ponderadas, tendencias históricas \\ \hline
+Harmony Board & Dashboard ejecutivo en tiempo real con KPIs principales, alertas de degradación, reportes automatizados \\ \hline
+Friction Reports & Reportes quincenales estructurados con análisis de tendencias y recomendaciones \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Ciclo de Trabajo}\\
+Ciclo quincenal completo según especificación estándar:
+\begin{itemize}
+    \item Detección continua durante las 2 semanas
+    \item Análisis Friction RCA paralelo
+    \item Revisión en Día 6
+    \item Actualización de métricas en Día 9
+    \item Reporte de cierre en Día 14
+\end{itemize}
+
+\textbf{Requisitos de Infraestructura}
+\begin{itemize}
+    \item Sistema de tracking (JIRA, Linear, Asana o similar)
+    \item Herramienta de visualización (Tableau, Grafana, Looker o equivalente)
+    \item Acceso a logs y métricas de sistemas
+    \item Automatización de cálculo de IK (scripts, webhooks, integraciones)
+\end{itemize}
+
+\textbf{Equipo Mínimo}
+\begin{itemize}
+    \item 1 Kanso Lead dedicado (50-100\% tiempo)
+    \item Soporte ejecutivo (sponsor que valide decisiones estratégicas)
+    \item Colaboración activa de tech leads o managers de equipo
+\end{itemize}
+
+\textbf{Beneficios Esperados}
+\begin{itemize}
+    \item Reducción medible de 15-30\% en fricciones recurrentes en 6 meses
+    \item Mejora del IK por trimestre
+    \item Visibilidad completa del estado operativo del equipo
+    \item Capacidad de predicción de degradación antes de que se manifieste
+    \item Cultura de mejora continua arraigada en el equipo
+\end{itemize}
+
+\section{Kanso Full}
+
+\textbf{Descripción}\\
+Extensión empresarial de Kanso Core, diseñada para organizaciones de gran escala que requieren coordinación entre múltiples equipos, geografías o unidades de negocio. Introduce componentes de gobernanza, estandarización cross-team y análisis comparativo.
+\\
+\\
+\textbf{Perfil de Organización}
+\begin{itemize}
+    \item Organizaciones de 50+ personas con múltiples equipos
+    \item Estructura multi-equipo con interdependencias significativas
+    \item Necesidad de estandarización y benchmarking interno
+    \item Presupuesto para equipo de mejora continua dedicado
+    \item Madurez organizacional alta con compromiso ejecutivo sostenido
+\end{itemize}
+
+\textbf{Componentes Adicionales (sobre Core)}
+\begin{itemize}
+    \item Kanso Office: Equipo central de 2-4 personas dedicadas a la metodología
+    \item Network de Kanso Leads: Un Kanso Lead por equipo coordinado centralmente
+    \item Friction Taxonomy Corporativa: Clasificación estandarizada entre equipos
+    \item Cross-Team Friction Detection: Identificación de fricciones inter-equipos
+    \item Comparative Analytics: Benchmarking interno entre equipos
+    \item Friction Impact Modeling: Proyecciones de ROI y análisis predictivo
+    \item Integration Layer: Conexión con sistemas empresariales (ERP, HRIS, BI)
+\end{itemize}
+
+\textbf{Estructura Organizacional}
+
+\begin{center}
+\small
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Rol} & \textbf{Responsabilidad} \\ \hline
+Chief Kanso Officer & Responsable de la estrategia de eficiencia organizacional, reporta a C-level \\ \hline
+Kanso Operations Manager & Coordinación operativa del Kanso Office, estandarización de procesos \\ \hline
+Kanso Data Analyst & Análisis avanzado, modelado predictivo, generación de insights \\ \hline
+Kanso Leads (múltiples) & Implementación en equipos individuales, reportan matricialmente al Kanso Office \\ \hline
+Kanso Champions & Evangelistas en equipos sin Kanso Lead dedicado, rol de 10-20\% tiempo \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Artefactos Extendidos}
+
+\begin{center}
+\small
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Artefacto} & \textbf{Implementación en Full} \\ \hline
+Enterprise Friction Ledger & Agregación de fricciones de todos los equipos con taxonomía unificada, análisis de tendencias corporativas \\ \hline
+Global Friction Analysis Matrix & Priorización corporativa considerando impacto cross-team y dependencias \\ \hline
+Comparative IK Dashboard & Índices Kanso por equipo, división, geografía; rankings y percentiles internos \\ \hline
+Friction Flow Analysis & Mapeo de cómo las fricciones se propagan entre equipos y sistemas \\ \hline
+Executive Harmony Suite & Suite de dashboards para C-level con KPIs estratégicos y alertas de riesgo sistémico \\ \hline
+Quarterly Efficiency Reports & Reportes trimestrales con análisis de tendencias, ROI de iniciativas, proyecciones \\ \hline
+Best Practices Repository & Base de conocimiento de soluciones exitosas reutilizables \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Ciclo de Trabajo Multi-Nivel}
+
+Kanso Full opera en tres niveles temporales sincronizados:
+
+\begin{enumerate}
+    \item Nivel Equipo (2 semanas): Cada equipo mantiene su ciclo Kanso Core independiente
+    \item Nivel División (mensual): Reunión de coordinación de Kanso Leads, sincronización de prioridades cross-team
+    \item Nivel Corporativo (trimestral): Revisión ejecutiva de eficiencia organizacional, decisiones estratégicas de inversión en reducción de fricción
+\end{enumerate}
+
+\textbf{Capacidades Avanzadas}
+
+\begin{itemize}
+    \item Friction Attribution Modeling: Análisis de causalidad entre fricciones y resultados de negocio (rotación, velocidad, calidad)
+    \item Predictive Friction Detection: Machine learning para anticipar fricciones emergentes antes de manifestarse
+    \item A/B Testing Framework: Experimentación controlada de soluciones a fricciones
+    \item Friction Cost Accounting: Cálculo preciso del costo económico de cada categoría de fricción
+    \item External Benchmarking: Comparación con industry standards y mejores prácticas externas
+\end{itemize}
+
+\textbf{Requisitos de Infraestructura}
+
+\begin{itemize}
+    \item Data warehouse corporativo con integración de múltiples fuentes
+    \item Plataforma de BI empresarial (Tableau, Power BI, Looker)
+    \item API layer para conexión con sistemas existentes
+    \item Automatización avanzada (RPA para captura de métricas)
+    \item Gobernanza de datos establecida (definiciones, ownership, SLAs)
+\end{itemize}
+
+\textbf{Inversión y ROI Esperado}
+
+\begin{center}
+\small
+\begin{tabular}{|p{5cm}|p{8cm}|}
+\hline
+\textbf{Componente} & \textbf{Inversión Estimada} \\ \hline
+Equipo Kanso Office & 2-4 FTEs (salarios + overhead) \\ \hline
+Kanso Leads distribuidos & 0.5-1 FTE por equipo de 15-20 personas \\ \hline
+Infraestructura tecnológica & \$50K-200K anuales (herramientas, integraciones) \\ \hline
+Capacitación y onboarding & \$20K-50K inicial + \$10K anual \\ \hline
+\textbf{Total anual} & \textbf{\$300K-800K} (org de 200-500 personas) \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{ROI Proyectado:}
+\begin{itemize}
+    \item Reducción de 20-40\% en fricciones sistémicas en 12 meses
+    \item Ahorro de 5-15\% del tiempo total de ingeniería (recuperado para trabajo productivo)
+    \item Reducción de 10-25\% en rotación voluntaria por mejora de experiencia
+    \item Aceleración de 15-30\% en time-to-market por eliminación de bloqueos
+    \item Payback period típico: 12-18 meses
+\end{itemize}
+
+\textbf{Criterio de Adopción}\\
+Una organización debe considerar Kanso Full cuando:
+\begin{itemize}
+    \item Tiene 3+ equipos operando exitosamente con Kanso Core
+    \item Detecta fricciones recurrentes que cruzan múltiples equipos
+    \item Requiere estandarización y comparabilidad entre unidades
+    \item El liderazgo ejecutivo demanda visibilidad de eficiencia a nivel corporativo
+    \item Existe presupuesto y commitment para sostener el Kanso Office por al menos 2 años
+\end{itemize}
+
+\hrule
+% #################################################
+% #################################################
+\section{Matriz de Decisión: ¿Qué Nivel Implementar?}
+
+\begin{center}
+\footnotesize
+\begin{tabular}{|p{3.5cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Criterio} & \textbf{Kanso Lite} & \textbf{Kanso Core} & \textbf{Kanso Full} \\ \hline
+Tamaño de equipo & 3-10 personas & 10-50 personas & 50+ personas (múltiples equipos) \\ \hline
+Recursos dedicados & 0.1 FTE rotativo & 0.5-1 FTE Kanso Lead & 2-5 FTEs Kanso Office \\ \hline
+Inversión anual & <\$5K & \$50K-150K & \$300K-800K \\ \hline
+Complejidad infraestructura & Mínima (spreadsheet) & Media (tracking + dashboard) & Alta (data warehouse + BI) \\ \hline
+Tiempo de setup & 1-2 semanas & 1-2 meses & 3-6 meses \\ \hline
+Frecuencia métricas & Mensual & Quincenal/Semanal & Continua (real-time) \\ \hline
+Beneficio esperado & 5-10\% mejora & 15-30\% mejora & 30-50\% mejora \\ \hline
+Payback period & Inmediato & 3-6 meses & 12-18 meses \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Recomendación General:}\\
+Se sugiere comenzar siempre con Kanso Lite para validar fit cultural y compromiso organizacional, luego graduar a Core tras 3-6 meses de operación exitosa. Kanso Full debe considerarse solo cuando Core está consolidado en múltiples equipos y existe clara necesidad de coordinación cross-team.
+\\
+\\
+\hrule
+% #################################################
+% #################################################
+\section{Métodos de Cuantificación de Fricciones}
+
+\subsubsection{Nivel 1 - Estimación Subjetiva (Kanso Lite)}
+
+\begin{itemize}
+    \item Auto-reporte del equipo en retrospectivas
+    \item Precisión: $\pm$50\%
+    \item Suficiente para identificar fricciones mayores
+\end{itemize}
+
+\subsubsection{Nivel 2 - Medición Semi-Automatizada (Kanso Core)}
+
+\begin{itemize}
+    \item Tiempo registrado en tickets tagged como ``friction-related''
+    \item Análisis de logs de CI/CD (tiempo entre commits y deploy)
+    \item Conteo de reuniones de coordinación
+    \item Precisión: $\pm$30\%
+\end{itemize}
+
+\subsubsection{Nivel 3 - Telemetría Automatizada (Kanso Full)}
+
+\begin{itemize}
+    \item Instrumentación de sistemas con OpenTelemetry
+    \item Análisis de tracing distribuido para identificar handoffs
+    \item Machine learning sobre patrones de trabajo
+    \item Precisión: $\pm$15\%
+\end{itemize}
+
+\subsubsection{Regla de Pragmatismo}
+
+Comenzar siempre con Nivel 1. Subir de nivel solo cuando:
+
+\begin{enumerate}
+    \item El equipo ya tiene disciplina de registro
+    \item El IK $>$ 20\% por 3 meses consecutivos
+    \item Existe presupuesto para herramientas de telemetría
+\end{enumerate}

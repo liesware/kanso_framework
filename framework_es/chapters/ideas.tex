@@ -1,0 +1,494 @@
+% #################################################
+% #################################################
+\chapter{2}
+
+\hrule
+% #################################################
+% #################################################
+\section{Golden Flow}
+\begin{quote}
+\textit{Los caminos pavimentados y fluidos.}
+\end{quote}
+
+Un Golden Flow es una ruta estandarizada y optimizada para ejecutar procesos repetitivos de alto impacto, diseñada para minimizar fricciones y garantizar fluidez.
+
+Son la versión Kanso de los golden paths: no son reglas burocráticas, sino flujos naturales donde el trabajo avanza sin trabas.
+
+\textbf{Objetivo} 
+\begin{itemize}
+    \item Eliminar fricciones repetidas: evitar que cada equipo invente su propia forma de hacer las cosas.
+    \item Asegurar consistencia: todos recorren el mismo cauce optimizado, reduciendo errores y duplicidades.
+    \item Acelerar entregas: menos pasos innecesarios → más velocidad con la misma seguridad.
+    \item Encarnar la filosofía zen: fluidez sobre fricción; el río no lucha contra las piedras, las rodea.
+\end{itemize}
+
+\textbf{Modo de uso}
+\begin{enumerate}
+    \item Identificar procesos con alta repetición (ej. despliegues, provisión, incidentes).
+    \item Extraer el mínimo esencial (solo los pasos críticos que generan valor).
+    \item Eliminar o automatizar lo innecesario (aprobaciones redundantes, integraciones manuales).
+    \item Documentar como flujo oficial (repos plantilla, scripts versionados, módulos compartidos).
+    \item Adoptar como cauce estándar para que todos los equipos lo usen y mantengan.
+\end{enumerate}
+
+Estructura de un Golden Board. Cada entrada debe contener al menos:
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2cm}|}
+\hline
+Nombre del flujo & Contexto & Pasos esenciales & Automatización embebida & Guardrails & Valor generado \\ \hline
+Despliegue de microservicios & CI/CD & Build → Test → Deploy & Pruebas automatizadas, policy as code & Validación de seguridad en pipeline & Deploy en minutos, sin burocracia manual \\ \hline
+Aprovisionamiento de infraestructura & IaC & Plan → Review → Apply & Terraform módulos estándar & Naming conventions automáticas & Menos snowflakes, más consistencia \\ \hline
+Gestión de incidentes & SRE/Oncall & Detectar → Diagnosticar → Resolver & Runbooks automatizados via ChatOps & Alertas unificadas & MTTR reducido en 40\% \\ \hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Valor ejecutivo}
+\begin{itemize}
+    \item Para el CTO: asegura consistencia tecnológica con menos deuda.
+    \item Para el CFO: acelera entregas reduciendo costos de fricción.
+    \item Para los equipos: les da rutas claras que eliminan burocracia y desperdicio.
+\end{itemize}
+
+{\epigraph{\textit{Un Golden Flow no es un proceso burocrático: es un cauce claro donde la energía del equipo fluye sin fricciones.}}{}}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Relación entre RFA y Golden Flow}
+\begin{quote}
+\textit{Primero se comprende el flujo, luego se consolida el cauce.}
+\end{quote}
+
+El Root Flow Analysis (RFA) es la etapa empírica: observa, identifica y reordena. Su propósito es entender 
+por qué la flujo del proceso dejó de fluir naturalmente y cómo puede volver a hacerlo sin rediseñar desde cero. 
+El RFA trabaja con la realidad tal como es ---analizando causas, actores y dependencias--- hasta encontrar el 
+orden más simple y eficiente posible. El Golden Flow, en cambio, es la etapa normativa: toma lo aprendido en el RFA 
+y lo convierte en estándar. Su función es capturar ese flujo reordenado y convertirlo en un cauce reproducible ---un 
+camino pavimentado donde el trabajo fluye con mínima fricción y máxima consistencia.
+\\
+\\
+
+% #################################################
+% #################################################
+\chapter{3}
+
+% #################################################
+% #################################################
+\section{Arquitectura Operativa del Framework}
+
+\textbf{Objetivo}\\
+Definir la arquitectura del framework.\\
+
+\textbf{Estructura}
+
+\begin{center}
+\begin{tabular}{|l|p{4cm}|p{7cm}|}
+\hline
+Capa & Nombre & Propósito \\ \hline
+Estratégica & Kanso Governance & Define métricas, revisiones y prioridades trimestrales/anuales. \\ \hline
+Temporal & Lumen (unidad de trabajo) & Itera cada 2 semanas detectando, clasificando y actuando sobre fricciones. \\ \hline
+Operativa & RFA+Friction Ledger + Golden Flows & Gestiona las fricciones detectadas y consolida soluciones estandarizadas. \\ \hline
+Analítica & Harmony Board & Centraliza métricas y evolución del IK/IKA. \\ \hline
+\end{tabular}
+\end{center}
+
+\hrule
+% #################################################
+% #################################################
+\section{Rol del RFA dentro de la arquitectura}
+
+\textbf{Objetivo}\\
+Es el paso analítico intermedio que reordena el flujo antes de estandarizarlo.\\
+
+\textbf{Ubicación}\\
+Dentro de la Capa Operativa, entre el Friction Ledger y los Golden Flows.\\
+
+% #################################################
+% #################################################
+\section{Rol del RFA dentro de la arquitectura}
+
+\textbf{Objetivo}\\
+Es el paso analítico intermedio que reordena el flujo antes de estandarizarlo.\\
+
+\textbf{Ubicación}\\
+Dentro de la Capa Operativa, entre el Friction Ledger y los Golden Flows.\\
+
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+Entrada & RFA & Salida \\ \hline
+Datos del Friction Ledger (fricciones detectadas, costos, evidencias). & Análisis causal y reordenamiento del flujo (causa → contramedida). & Base empírica para diseñar un Golden Flow. \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Valor}
+\begin{itemize}
+    \item Evita que se creen Golden Flows prematuros (sin comprensión de causa).
+    \item Captura aprendizaje institucional y patrones de fricción recurrentes.
+    \item Asegura que cada mejora tenga un fundamento causal y Kanso-alineado.
+\end{itemize}
+
+\hrule
+% #################################################
+% #################################################
+\textbf{Golden Flows} \\ 
+Rutas estandarizadas y fluidas que reemplazan procesos con fricción.
+
+Columnas básicas:
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2.5cm}|p{2cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{2.5cm}|}
+\hline
+Flujo & Contexto & Pasos esenciales & Automatización embebida & Guardrails & Valor generado \\ \hline
+CI/CD Pipeline & Microservicios & Build → Test → Deploy & Pruebas automáticas & Policy as Code & +40\% velocidad despliegue \\ \hline
+Onboarding & Recursos Humanos & Solicitud → Setup → Acceso & Automatización vía API & Validación HR & Reducción de 2 días por empleado \\ \hline
+\end{tabular}
+\end{center}
+
+\hrule
+% #################################################
+% #################################################
+
+\textbf{Efficiency Board (KPI)} \\
+
+Es el núcleo vital del ecosistema Kanso, un tablero vivo que muestra el estado actual de eficiencia operacional. Su propósito no es reportar progreso, sino mantener la consciencia colectiva del flujo: la proporción entre energía útil (flujo) y energía perdida (fricción).
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{3cm}|p{4.5cm}|p{3cm}|p{2.5cm}|}
+\hline
+Sección & Descripción & Tipo de dato & Ejemplo visual \\ \hline
+IK actual & Mide la eficiencia del OPEX en tiempo real. & \% continuo (actualizado diario o por evento) & ``IK: 14.7\%  estable'' \\ \hline
+IKA & Relación con TCO. Muestra impacto estructural. & \% mensual (actualizable continuo) & ``IKA: 11.2\% OK'' \\ \hline
+Horas evitables eliminadas (rolling) & Acumulado de horas liberadas en ventana móvil (p.ej., 30 días). & número & ``+340h / 30 días'' \\ \hline
+Total ahorrado & Conversión monetaria directa. & \$ & ``\$1,250,000 MXN liberados YTD'' \\ \hline
+RFA ratio & RFA implementados / detectados & ratio & ``68\%'' \\ \hline
+Golden Flows ratio & Flujos activos y golden flows & entero & ``5 activos, 1 en diseño'' \\ \hline
+Nivel de madurez Kanso & Estado de evolución operativa global. & escala 1--5 & ``Nivel 3 -- Integración'' \\ \hline
+Estado del ecosistema (sintético) & Color o texto según promedio ponderado del sistema. & estado simbólico &  Fluido / Tenso / Bloqueado \\ \hline
+\end{tabular}
+\end{center}
+
+% #################################################
+% #################################################
+\section{Roles y Responsabilidades}
+
+\textbf{Objetivo}\\
+Definir roles y responsabilidades dentro del framework para tener claridad.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{|p{2cm}|p{3cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+ROL & RESPONSABILIDAD PRINCIPAL & ENTREGABLES & PODER DE DECISIÓN & NO ES SU ROL \\ \hline
+Kanso Lead & Dirige aplicación del framework, facilita sesiones, reporta a ejecutivos & IK/IKA, RFA, Friction Ledger, Harmony Board & No decide qué fricciones resolver. Decide cómo se facilita el proceso & No ejecuta soluciones. No diseña flujos. No es dueño de fricciones \\ \hline
+Friction Owner & Responsable de fricción detectada en su área & Descripción de fricción, Evidencia, RFA inicial, Acciones correctivas en Friction Ledger & No decide si se prioriza. Decide qué evidencia aportar & No facilita sesiones. No diseña el flujo optimizado. No aprueba recursos \\ \hline
+Flow Architect & Transforma RFA en Golden Flows operativos & Documentación de flujos, Automatización y Métricas de flujo & No decide qué optimizar. Decide CÓMO optimizar & No detecta fricciones. No aprueba prioridades. No reporta a ejecutivos \\ \hline
+Business Link & Alineación técnica,negocio & Aprobación de medidas de reducción & Decide qué se prioriza. Aprueba recursos & No facilita el proceso. No ejecuta. No diseña flujos \\ \hline
+Inner Axis & Miembros operativos del ciclo & Friction Ledger actualizado. Participación en RFA colaborativos & No deciden prioridades. Ejecutan acciones asignadas & No son owners de fricción. No facilitan. No diseñan flujos \\ \hline
+\end{tabular}
+\end{center}
+
+\hrule
+
+% #################################################
+% #################################################
+\section{Dilucidación sobre roles y responsabilidades}
+
+\textbf{KANSO LEAD: Detective + Facilitador de Información} 
+
+\textit{Responsabilidad principal: Detecta fricciones, investiga causa raíz, facilita información para que otros decidan.}\\
+
+Detección continua
+\begin{itemize}
+    \item Busca fricciones proactivamente (no solo espera reportes)
+    \item Observa procesos, métricas, quejas recurrentes
+    \item Identifica patrones de fricción
+\end{itemize}
+
+Investigación conjunta
+\begin{itemize}
+    \item Trabaja JUNTO con Friction Owner (no solo recibe info)
+    \item Hace entrevistas a afectados
+    \item Recolecta métricas y evidencia
+    \item Documenta causa raíz colaborativamente
+\end{itemize}
+
+Centralización de información
+\begin{itemize}
+    \item Prepara información para Business Link (para priorizar)
+    \item Ayuda a Flow Architect a evaluar Golden Flows
+    \item Reporta resultados a comité ejecutivo
+    \item Mantiene Friction Ledger actualizado
+\end{itemize}
+
+Lo que no hace:
+\begin{itemize}
+    \item No decide qué fricción resolver
+    \item No decide cómo estandarizar flujos
+    \item No prioriza (solo facilita la priorización)
+    \item No ejecuta soluciones (solo ayuda a evaluarlas)
+\end{itemize}
+
+\textbf{FRICTION OWNER: Co-investigador + Validador} 
+
+\textit{Responsabilidad principal: Colabora con Kanso Lead en detección e investigación de SU fricción.}\\
+
+
+Trabajo en equipo con kanso lead:
+\begin{itemize}
+    \item Detecta la fricción inicial (la vive/sufre)
+    \item Aporta evidencia desde su experiencia
+    \item Participa en entrevistas que hace Kanso Lead
+    \item Co-crea el RFA junto con Kanso Lead
+    \item Valida que la causa raíz identificada es correcta
+\end{itemize}
+
+Post-implementación:
+\begin{itemize}
+    \item Prueba la solución implementada
+    \item Documenta acciones correctivas en Friction Ledger
+    \item Confirma que fricción se redujo
+\end{itemize}
+
+Lo que no hace:
+\begin{itemize}
+    \item No investiga solo (lo hace CON Kanso Lead)
+    \item No decide si se prioriza
+    \item No diseña flujos
+    \item No ejecuta (aunque puede apoyar)
+\end{itemize}
+
+\textbf{FLOW ARCHITECT: Diseñador + Estandarizador} 
+
+\textit{Responsabilidad principal: En sesión Golden Flow Sync, decide qué fricciones estandarizar y cómo diseñar los flujos.}\\
+
+
+Decisión de estandarización:
+\begin{itemize}
+    \item Analiza fricciones resueltas
+    \item Identifica cuáles son recurrentes/similares
+    \item Decide cuáles vale la pena estandarizar
+    \item Define el scope de cada Golden Flow
+\end{itemize}
+
+Diseño de golden flows:
+\begin{itemize}
+    \item Crea flujos estandarizados para tipos de fricción
+    \item Documenta procesos optimizados
+    \item Define automatizaciones
+    \item Establece métricas de flujo
+\end{itemize}
+
+Sesión golden flow sync:
+\begin{itemize}
+    \item Presenta propuestas de Golden Flows
+    \item Recibe feedback de Kanso Lead (evaluación)
+    \item Ajusta diseños según evaluación
+    \item Decide versión final del Golden Flow
+\end{itemize}
+
+Lo que no hace:
+\begin{itemize}
+    \item No detecta fricciones originalmente
+    \item No decide qué fricción resolver primero (eso es Business Link)
+    \item No ejecuta la implementación
+\end{itemize}
+
+Nota: El Kanso Lead ayuda a evaluar los Golden Flows que diseña Flow Architect, pero no decide cuáles estandarizar ni cómo. Flow Architect tiene la decisión final en la sesión Golden Flow Sync.\\
+
+\textbf{BUSINESS LINK: Priorizador Estratégico} 
+
+\textit{Responsabilidad principal: Decide qué fricciones priorizar basándose en valor de negocio.}\\
+
+Priorización:
+\begin{itemize}
+    \item Recibe información facilitada por Kanso Lead (RFA completo, impacto, opciones)
+    \item Concilia necesidades técnicas con valor de negocio
+    \item Decide qué fricción resolver primero
+    \item Decide cuáles van a backlog
+    \item Aprueba recursos para fricciones priorizadas
+\end{itemize}
+
+Alineación negocio-técnica:
+\begin{itemize}
+    \item Evalúa ROI de resolver cada fricción
+    \item Considera estrategia de negocio
+    \item Balancea urgencia vs importancia
+    \item Comunica decisiones y razones
+\end{itemize}
+
+Lo que no hace:
+\begin{itemize}
+    \item No investiga fricciones (confía en info de Kanso Lead)
+    \item No decide cómo resolver (eso es Flow Architect)
+    \item No facilita sesiones
+    \item No ejecuta
+\end{itemize}
+
+\textbf{INNER AXIS: Ejecutores + Implementadores} 
+
+\textit{Responsabilidad principal: Resuelven fricciones priorizadas e implementan Golden Flows.}\\
+
+Ejecución:
+\begin{itemize}
+    \item Implementan soluciones para fricciones priorizadas
+    \item Implementan Golden Flows diseñados por Flow Architect
+    \item Hacen cambios técnicos/operativos
+    \item Desarrollan automatizaciones
+\end{itemize}
+
+Seguimiento:
+\begin{itemize}
+    \item Actualizan Friction Ledger con progreso
+    \item Reportan bloqueadores al Kanso Lead
+    \item Trabajan en equipo para resolver
+    \item Validan implementación con Friction Owner
+\end{itemize}
+
+Lo que no hace:
+\begin{itemize}
+    \item No detectan fricciones originalmente (aunque pueden reportar)
+    \item No priorizan qué hacer
+    \item No diseñan los flujos (ejecutan el diseño de Flow Architect)
+    \item No deciden si estandarizar
+\end{itemize}
+
+
+% #################################################
+% #################################################
+
+\section{Unidad de Trabajo}
+
+\textbf{Objetivo}\\ 
+Detectar, clasificar, cuantificar y priorizar las fricciones.
+
+Duración: 2 semanas (Recomendado) → equilibrio entre acción y análisis.
+
+Naturaleza
+\begin{itemize}
+    \item El ciclo de trabajo no mide entregas ni tareas, sino flujo operativo y reducción de fricción.
+    \item Es una unidad de introspección estructurada: el espacio en el que la organización observa, mide y corrige su eficiencia interna.
+    \item El ciclo de trabajo empieza y termina con el ciclo operativo del equipo. 
+    \item El ciclo de trabajo solo es para el Kanso Lead, permite evaluar, planear y presentar las cargas de trabajo antes del inicio del ciclo de trabajo del equipo.
+\end{itemize}
+
+Estructura del ciclo de trabajo
+
+\begin{center}
+\small
+\begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
+\hline
+Día de la Semana & Actividad & Artefactos / Resultados \\ \hline
+Semana 1 y 2 & Detección de fricciones (entrevistas, logs, tickets, pipelines). & Llenado del Friction Ledger. \\ \hline
+Semana 1 y 2 & RFA análisis & Llenado del RFA Board \\ \hline
+Día 6 & RFA Board & Se revisa el RFA Board y se aprueban los reordenamientos para aplicar en el siguiente ciclo de trabajo del equipo* \\ \hline
+Día 9 & Actualización de métricas. & Nuevo IK parcial, variación documentada. \\ \hline
+Cierre del ciclo & Reporte de resultados. & Minireporte visual o entrada automática en el Harmony Board. \\ \hline
+\end{tabular}
+\end{center}
+
+% #################################################
+% #################################################
+
+\section{Fases de Adopción Organizacional}
+
+\begin{center}
+\begin{tabular}{|l|p{4cm}|p{3cm}|p{4.5cm}|}
+\hline
+Fase & Objetivo & Duración sugerida & Resultado esperado \\ \hline
+I. Piloto & Implementar en 1 equipo. & 1 trimestre & Validar artefactos y métricas. \\ \hline
+II. Expansión controlada & 2--3 equipos en paralelo. & 3 trimestre & Comparar IK entre equipos. \\ \hline
+III. Institucionalización & Adopción por áreas completas. & 4 trimestre & Golden Flows consolidados. \\ \hline
+IV. Cultura Kanso & Autoevaluación continua. & >4 trimestre & IK estable <15\%. \\ \hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Kanso full}
+
+Introducción de Kanso framework al ecosistema sin disrupciones.
+
+Puntos clave:
+\begin{itemize}
+    \item Cada semana se registran las fricciones y rfa
+    \item A partir de la 3ra semana integrar rfa a resolver, no debe ser invasiva a la forma de trabajo.
+    \item En la 3ra semana definir la métrica de éxito del integration flow, se recomienda número de rfa resueltos al final del proceso.
+    \item Solo usar friction ledger, rfa board y IK
+    \item Mantenerlo todo de manera natural, no entorpecer el trabajo de los sprints y solo tener una sesión semanal para review y action plan.
+\end{itemize}
+
+\textbf{Kanso Core}
+
+Implementar Kanso framework en el ecosistema de manera simple.
+
+Puntos clave:
+\begin{itemize}
+    \item Cada semana se registran las fricciones y rfa
+    \item A partir de la 3ra semana integrar rfa a resolver, no debe ser invasiva a la forma de trabajo.
+    \item En la 3ra semana definir la métrica de éxito del integration flow de cada ciclo de trabajo del equipo, se recomienda número de rfa resueltos al final de cada ciclo.
+    \item Solo usar friction ledger, rfa board y IK
+    \item Mantenerlo todo de manera natural, no entorpecer el trabajo de los ciclos de trabajo y solo tener una sesión semanal para review y action plan.
+    \item Solo se mantiene el rol formal de kanso lead, la misma naturalidad del equipo permitirá la auto organización de los demás roles de acuerdo a las circunstancias.
+\end{itemize}
+
+% #################################################
+% #################################################
+
+El índice anterior es Kanso o Kanso simple, pero también se encuentra el Kanso aumentado (IKA) que tiene la 
+finalidad de medir qué porcentaje del costo total de poseer y operar una solución (TCO) se está desperdiciando 
+en fricciones evitables, es decir, muestra el costo oculto de una solución respecto al TCO.
+
+Se expresa como una proporción:
+
+\[
+IKA = \frac{Overhead}{TCO} \times 100
+\]
+
+Donde:
+\begin{itemize}
+    \item Overhead = horas desperdiciadas (fricciones evitables) × costo hora.
+    \item TCO (Total Cost of Ownership) = CAPEX + OPEX
+\end{itemize}
+
+Interpretación IKA:
+\begin{itemize}
+    \item IK bajo (0--10\%) → Verde o Ordenado. La mayor parte del esfuerzo operativo se dedica a crear valor. Las fricciones inevitables están bajo control.
+    \item IK moderado (10--20\%) → Amarillo o Desordenado. El sistema funciona, pero hay fugas de eficiencia (duplicidades, manualidad, malas integraciones). Es momento de aplicar Kanso para reducir fricción.
+    \item IK alto (>20\%) → Rojo o Caótico. Una cuarta parte o más del gasto se pierde en overhead. Esto significa que la organización trabaja más para mantener el sistema que para hacer avanzar el negocio.
+\end{itemize}
+
+Ejemplo, Una empresa tiene:
+\begin{itemize}
+    \item CAPEX: \$100,000 (infraestructura inicial).
+    \item OPEX: \$400,000/año (salarios, licencias, seguridad).
+    \item Overhead: 10 ingenieros pierden 5h/semana en integraciones rotas.
+    \begin{itemize}
+        \item 5h × 10 ingenieros × 52 semanas × \$50/h = \$130,000/año.
+    \end{itemize}
+\end{itemize}
+
+Entonces:
+\begin{itemize}
+    \item $TCO = 100{,}000 + 400{,}000 = 500{,}000$
+    \item $OPEX = 400{,}000$
+    \item $Overhead = 130{,}000$
+\end{itemize}
+
+\[
+IK = \frac{130{,}000}{400{,}000} \times 100 = 32.5\%
+\]
+
+\[
+IKA = \frac{130{,}000}{500{,}000} \times 100 = 26\%
+\]
+
+El sistema está en zona amarilla. Si aplicas Kanso y reduces las fricciones evitables un 65\%, el IK baja a 11.3\% → Ordenado y el IKA a 9.1\% → Ordenado.
+
+En resumen con la métrica IK se cuantifica los costos de oportunidad perdidos y ayudan a dar una perspectiva de la eficiencia de un ecosistema.

@@ -1,0 +1,653 @@
+\chapter{El sistema}\label{chap:two}
+
+% #################################################
+% #################################################
+\section{Fricción}
+
+La fricción es el concepto principal de este marco de trabajo, y la podemos definir como la resistencia natural de un ecosistema a la introducción de un nuevo elemento al mismo. Para lo cual tenemos 2 tipos evitables e inevitables.
+
+\textbf{Fricciones inevitables}\\
+Son las que sí o sí tendrás al operar una solución, incluso con el mejor diseño.
+
+Criterios:
+\begin{enumerate}
+    \item Naturaleza esencial: sin esa fricción, la solución no podría funcionar en tu contexto. Ej: aplicar parches de seguridad críticos.
+    \item Obligación externa: impuesta por leyes, compliance o regulaciones. Ej: auditorías PCI, GDPR, ISO.
+    \item Limitaciones técnicas universales: derivadas de la tecnología en sí, no de tu implementación. Ej: latencia física en redes de larga distancia.
+    \item Esfuerzo proporcional: el costo de reducirla sería mayor al beneficio. Ej: entrenar pilotos para operar un avión → inevitable.
+\end{enumerate}
+
+\textit{Ejemplo TI:} Mantener certificados TLS actualizados. No hay forma de evitarlo, solo automatizarlo un poco.
+
+\textbf{Fricciones evitables}\\
+Son las que existen solo porque el diseño, proceso o integración no es óptimo.
+
+Criterios:
+\begin{enumerate}
+    \item Redundancia innecesaria: dos procesos/herramientas hacen lo mismo. Ej: usar tres sistemas de monitoreo en paralelo.
+    \item Falta de estandarización: cada equipo usa un lenguaje/tool distinto para lo mismo. Ej: Terraform + Ansible + scripts ad hoc.
+    \item Manualidad repetitiva: tareas mecánicas que pueden automatizarse. Ej: copiar logs de un servidor a otro a mano.
+    \item Errores recurrentes: mismas fallas una y otra vez → síntoma de proceso mal diseñado. Ej: pipelines que fallan por validaciones manuales.
+    \item Burocracia excesiva: aprobaciones o pasos que no agregan valor real. Ej: 3 firmas para liberar un cambio trivial.
+    \item Mala integración: adaptadores frágiles, procesos manuales para pasar datos entre sistemas.
+\end{enumerate}
+
+\textit{Ejemplo IT:} Un DevOps pasa 4h/semana ajustando scripts porque el sistema de tickets no se integra bien con el CI/CD. → evitable.
+
+\begin{itemize}
+    \item Inevitable: costo mínimo natural, ligado a operar cualquier solución.
+    \item Evitable: sobrecosto (overhead) generado por mal diseño, redundancia o falta de automatización.
+\end{itemize}
+
+% #################################################
+% #################################################
+\subsection*{Identificar fricciones}
+
+\begin{quote}
+\textit{Hacer visible lo invisible. Detectar dónde se va el tiempo y por qué.}
+\end{quote}
+
+Señales típicas:
+\begin{enumerate}
+    \item Tareas manuales
+    \item Handoffs para una tarea
+    \item Integraciones frágiles
+    \item Problemas y tareas recurrentes
+    \item Flujos de trabajo lentos
+    \item MTTD/MTTR altos
+    \item Burocracia
+    \item Seguridad
+\end{enumerate}
+
+Fuentes de evidencia:
+\begin{enumerate}
+    \item Tickets: tiempos de espera, re-trabajos, causa raíz.
+    \item Repos/Pipelines: duraciones, aprobaciones, reintentos, fallos.
+    \item Observabilidad: frecuencia de incidentes, downtime.
+    \item Entrevistas rápidas (15 min): ``¿qué pasos te sobran?'', ``¿qué automatizarías primero?'' ``¿Qué necesitas para hacer tu trabajo más eficiente?''
+\\
+\\
+\end{enumerate}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Costo de Complejidad}
+
+El costo de complejidad es el costo total de fricciones de operar y/o introducir soluciones no plug-and-play 
+\footnote{La soluciones plug and play son casi inexistentes pero se utiliza como termino de referecnia.} 
+en un ecosistema. En otras palabras, el costo de complejidad es la suma de las fricciones inevitables (OPEX natural) 
+y las fricciones evitables (overhead del OPEX) que surgen al operar soluciones no plug-and-play.
+\\
+\\
+Desde otro punto de vista, el costo de complejidad es el costo total de gastos visibles y 
+ocultos de fricciones que genera una solución al operar en un contexto y se define por las preguntas:
+
+\begin{itemize}
+    \item ¿Cuál es el costo real de implementar esta solución en mi ecosistema?
+    \item ¿Cuál es el overhead de mi opex?
+    \item ¿Qué tanto problema ha sido integrar esta nueva solución?
+\end{itemize}
+
+Ejemplo: Tengo mi negocio de mensajería local por lo cual solo opero vehículos, entonces deseo expandirme para 
+lo cual quiero introducir un avión para poder realizar entregas interestatales, entonces ¿cuál sería el 
+costo de complejidad añadir esta solución? La fricción de meter un avión en un ecosistema que estaba diseñado 
+solo para vehículos terrestres, este el verdadero costo de complejidad resumido. 
+En resumen, es el costo que genera la complejidad de las interacciones entre los elementos de un sistema
+\\
+\\
+{\textbf{TCO vs Costo de Complejidad}}
+\\
+El TCO (Total Cost of Ownership) es el costo total de poseer y operar una solución durante todo su ciclo de vida. 
+El Costo de Complejidad son 2 subconjuntos del TCO, estos son el OPEX (visible) y el overhead operativo causado por 
+fricciones evitables (Overhead del OPEX usualmente oculto).
+\\
+\\
+Ejemplo:
+\begin{itemize}
+\item Comprar una herramienta de monitoreo: TCO = licencias + servidores + soporte + costo de complejidad.
+\item Costo de complejidad: ingenieros que operen la solución más tener que escribir adapters manuales 
+para que se integren con tu sistema de alertas, más horas de troubleshooting porque rompe aplicaciones.
+\\
+\end{itemize} 
+
+
+{\textbf{OPEX vs Costo de Complejidad}}
+\\
+OPEX es el gasto recurrente y operativo que permite que las soluciones funcionen día a día. 
+El Costo de Complejidad es el OPEX más los gastos ocultos de operar una solución, es decir:
+Cuando las fricciones evitables = 0, el costo de complejidad se reduce al OPEX natural (fricciones inevitables). 
+El problema aparece cuando el esfuerzo operativo deja de ser natural y se convierte en un overhead que no genera 
+valor directo: como integraciones deficientes, procesos redundantes o falta de automatización.
+Otra manera de verlo es: 
+\begin{center}
+Costo de complejidad = OPEX natural + Overhead del OPEX (fricciones evitables)
+\end{center}
+
+Ejemplo:
+\begin{itemize}
+\item OPEX natural: Tienes un cluster de Kubernetes. Un DevOps cobra 100\% de su sueldo para operarlo.
+\item OPEX natural + Overhead del OPEX: Mismo clúster, pero cada semana se rompe la integración con el 
+monitoring y requiere horas extra de troubleshooting. Además, cada despliegue necesita coordinación manual entre 3 equipos.
+\end{itemize} 
+
+En otras palabras:
+
+\begin{itemize}
+    \item El salario ya estaba presupuestado; lo que cambia es que se malgasta en fricciones.
+    \item No es un costo nuevo, es un costo de oportunidad perdido.
+    \item Son horas de OPEX que no producen el valor esperado.
+    \item Es el tiempo desperdiciado en fricciones innecesarias que no generan valor.
+\end{itemize}
+
+{\textbf{Diferencia Conceptual}}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{3.5cm}|p{4.5cm}|p{6cm}|}
+\hline
+\textbf{Concepto} & \textbf{Naturaleza} & \textbf{Relación con el Costo de Complejidad} \\ \hline
+TCO & Costo total de poseer una solución (CAPEX + OPEX + costos indirectos). & El Costo de Complejidad está dentro del TCO. Es una parte variable y dinámica que depende de las fricciones que genera la solución. \\ \hline
+OPEX & Parte recurrente del TCO (operación diaria). & El Costo de Complejidad se manifiesta principalmente dentro del OPEX como sobrecarga o desperdicio operativo. \\ \hline
+Costo de Complejidad & Efecto emergente dentro del TCO y del OPEX causado por fricciones evitables. & Puede entenderse como OPEX natural + overhead, o como la diferencia entre OPEX ideal y OPEX real. \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+\hrule
+
+% #################################################
+% #################################################
+
+\section{Anclaje cuantitativo de la fricción}
+
+{\textbf{Definición general}}\\
+Fricción operativa = tiempo improductivo invertido en resolver o compensar ineficiencias del sistema.\\
+Costo de fricción = (horas perdidas / mes) $\times$ (costo hora promedio del rol afectado).
+\\
+\\
+{\textbf{Escala de referencia (aplicable a cualquier dominio)}}
+\\
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2cm}|p{2.5cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Tipo de organización} & \textbf{Rol promedio} & \textbf{Costo hora estimado} & \textbf{Fricción promedio (h/mes por persona)} & \textbf{Costo mensual oculto} & \textbf{\% típico del OPEX desperdiciado} \\ \hline
+Empresa SaaS / IT & Ingeniero / DevOps & \$50 USD & 20--40 h & \$1,000--\$2,000 & 10--25\% \\ \hline
+Servicios financieros & Analista / Gestor & \$60 USD & 15--30 h & \$900--\$1,800 & 8--20\% \\ \hline
+Manufactura & Supervisor / Técnico & \$35 USD & 10--25 h & \$350--\$875 & 5--15\% \\ \hline
+Gobierno / Educación & Administrador & \$25 USD & 15--30 h & \$375--\$750 & 8--18\% \\ \hline
+Retail / Operaciones & Coordinador / Logística & \$20 USD & 10--20 h & \$200--\$400 & 5--10\% \\ \hline
+\end{tabular}
+\end{table}
+
+Estas cifras no buscan precisión contable, sino dar magnitud: incluso una fricción leve 
+(20 horas improductivas/mes por empleado) representa entre 10 y 20\% del costo operativo 
+total en la mayoría de los sectores.
+\\
+\\
+Ejemplo:
+
+Una empresa de servicios con 50 empleados administrativos y técnicos detecta que cada uno pierde, en promedio, 
+15 horas al mes en tareas redundantes o esperas interdepartamentales.
+Con un costo hora promedio de \$40 USD:
+
+\begin{center}
+$50 \times 15h \times 40 = 30{,}000$ USD/mes
+\end{center}
+
+Eso equivale a \$360,000 USD al año de OPEX improductivo.
+
+Reducir esa fricción en 40\% con prácticas de Kanso (automatización, estandarización y fluidez) 
+libera \$144,000 USD/año, sin agregar recursos ni cambiar de tecnología.
+\\
+\\
+\textbf{¿Entonces?}
+
+\begin{enumerate}
+    \item ¿Por qué ahora?, responde a una verdad estructural: la eficiencia moderna ya no depende de agregar tecnología, sino de reducir el costo invisible de mantenerla funcionando junta.
+    \item El anclaje cuantitativo da al framework una base empírica: una fricción no es un concepto filosófico, sino una pérdida económica recurrente y mensurable en cualquier entorno humano o técnico.
+\\
+\\
+\end{enumerate}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Kanso Framework}
+
+Kanso es una palabra japonesa que significa simplicidad o ausencia de adornos. 
+Forma parte de los siete principios de la estética zen y representa la idea de que la verdadera belleza, 
+claridad y eficiencia emergen cuando se elimina lo innecesario y solo queda lo esencial.
+En el contexto del Kanso Framework, esta palabra encarna la filosofía central: reducir la 
+complejidad a su mínima expresión, conservando únicamente lo que genera valor real.
+El framework propone armonía operativa: menos fricción, menos desperdicio de tiempo y un OPEX más saludable.
+El Kanso Framework tiene como objetivo optimizar el costo de complejidad en organizaciones modernas.
+
+\begin{itemize}
+    \item Identificar las fricciones inevitables y las evitables en la operación de soluciones.
+    \item Reducir al máximo las fricciones evitables, como redundancias, procesos manuales innecesarios o integraciones defectuosas.
+    \item Encapsular y gestionar la complejidad inevitable con métodos claros y predecibles.
+    \item Mantener un OPEX saludable, asegurando que los equipos dediquen su tiempo y energía a crear valor y no a reparar fricciones.
+\end{itemize}
+
+En esencia, Kanso Framework ayuda a las organizaciones a transformar ecosistemas complejos en sistemas más simples, 
+claros y sostenibles. El alma de este framework es mantener la simplicidad en entornos complejos. 
+En una sola frase es el scrum para la eficiencia del OPEX.
+\\
+\\
+\textbf{El Ethos Kanso}
+\\
+La implementación efectiva de Kanso requiere tres prácticas fundamentales:
+\begin{enumerate}
+    \item Diseño deliberado: Cada proceso debe tener un propósito medible, no existir por inercia.
+    \item Visibilidad operativa: Documentar el flujo de trabajo real, no el teórico.
+    \item Reducción de handoffs: Minimizar puntos de transferencia entre personas, equipos y sistemas.
+\end{enumerate}
+Adoptar Kanso es adoptar una cultura de simplicidad consciente.
+
+{\epigraph{\textit{La complejidad técnica es inevitable. La simplicidad operativa requiere diseño deliberado.}}{}}
+
+\hrule
+% #################################################
+% #################################################
+\section{Índice Kanso}
+\begin{quote}
+\textit{La métrica del costo de complejidad.}
+\end{quote}
+
+
+El Índice Kanso (IK) es la métrica central del framework. Cuantifica qué porcentaje del gasto operativo (OPEX) se pierde en trabajo improductivo causado por fricciones evitables.
+
+Se expresa como una proporción:
+
+\[
+IK = \frac{Overhead}{OPEX} \times 100
+\]
+
+Donde:
+\begin{itemize}
+    \item Overhead = horas desperdiciadas (fricciones evitables) × costo hora.
+\end{itemize}
+
+Interpretación IK
+\begin{itemize}
+    \item IK bajo (0--15\%) → Sistema eficiente (zona verde). La mayor parte del esfuerzo operativo se dedica a crear valor. Las fricciones inevitables están bajo control.
+    \item IK moderado (15--25\%) → Ineficiencias moderadas (zona amarilla). El sistema funciona, pero hay fugas de eficiencia (duplicidades, manualidad, malas integraciones). Es momento de aplicar Kanso para reducir fricción.
+    \item IK alto (>25\%) → Crisis operativa (zona roja). Una cuarta parte o más del gasto se pierde en overhead. Esto significa que la organización trabaja más para mantener el sistema que para hacer avanzar el negocio.
+\end{itemize}
+
+Comparación con métricas existentes:
+
+
+Ejemplo: Un sistema con TCO bajo puede tener IK alto si su operación requiere mucho trabajo manual."
+
+\begin{itemize}
+    \item TCO mide costo total de propiedad (CAPEX + OPEX)
+    \item IK mide qué porción del OPEX es desperdicio oculto
+    \item Ejemplo: Un sistema con TCO bajo puede tener IK alto si su operación requiere mucho trabajo manual."    
+\\
+\\
+\end{itemize}
+
+\hrule
+% #################################################
+% #################################################
+\section{Friction Ledger}
+\begin{quote}
+\textit{El inventario vivo de fricciones.}
+\end{quote}
+
+El Friction Ledger (registro de fricciones) funciona como un backlog especializado donde se documentan y cuantifican ineficiencias operativas. 
+A diferencia de un backlog tradicional enfocado en features, el Ledger registra overhead operativo con su costo asociado.
+
+\textbf{Objetivo}
+\begin{itemize}
+    \item Cuantificar: convertir horas desperdiciadas en costo monetario.
+    \item Clasificar: separar lo inevitable (OPEX natural) de lo evitable (overhead).
+    \item Priorizar: identificar qué fricciones deben eliminarse, automatizarse o rediseñarse primero.
+    \item Comunicar: ofrecer a negocio y ala tecnología un lenguaje común para entender la complejidad.
+\end{itemize}
+
+Estructura del ledger. Cada entrada debe contener al menos:
+
+\begin{table}[h]
+\centering
+\scriptsize
+\begin{tabular}{|l|p{2.2cm}|l|l|l|l|p{1.8cm}|p{2.2cm}|}
+\hline
+ID & Fricción & Clasif. & Tiempo (h/mes) & Costo/h & Costo/mes & Evidencia & Acción \\ \hline
+F-001 & Integración CI/CD rompe credenciales cada semana & Evitable & 40 & \$50 & \$2,000 & Logs, tickets Jira & Automatizar rotación con Vault \\ \hline
+F-002 & Auditoría PCI trimestral & Inevitable & 20 & \$70 & \$1,400 & Req. legal & Optimizar docs \\ \hline
+F-003 & Aprobar cambios menores requiere 3 firmas & Evitable & 15 & \$60 & \$900 & Change mgmt & Policy as code \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Modo de uso}
+
+Detección de Fricciones
+\begin{enumerate}
+    \item Revisar tickets, logs, pipelines y entrevistas rápidas.
+    \item Anotar cada fricción detectada.
+\end{enumerate}
+
+Cálculo
+\begin{enumerate}
+    \item Tiempo perdido × costo hora = costo mensual/anual de esa fricción.
+\end{enumerate}
+
+Clasificación
+\begin{enumerate}
+    \item Inevitable → OPEX natural.
+    \item Evitable → overhead de complejidad.
+\end{enumerate}
+
+Acción
+\begin{enumerate}
+    \item Documentar la intervención propuesta (eliminar, estandarizar, automatizar, rediseñar).
+\end{enumerate}
+
+Actualización continua
+\begin{enumerate}
+    \item El ledger debe mantenerse vivo, como un libro contable: cada mes se agregan, cierran o ajustan fricciones.
+\end{enumerate}
+
+\textbf{Valor ejecutivo}
+\begin{itemize}
+    \item Para el CFO: El Friction Ledger traduce la complejidad en dinero perdido.
+    \item Para el CTO: Expone cuántas horas de ingenieros se malgastan en fricciones evitables.
+    \item Para los equipos: Visibiliza la carga de trabajo improductivo y da argumentos para priorizar automatización o estandarización.
+\end{itemize}
+
+{\epigraph{\textit{El Friction Ledger cuantifica el costo operativo oculto al convertir horas perdidas en impacto económico medible.}}{}}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Friction RCA}
+\begin{quote}
+\textit{Entender la causa es más simple que combatir el síntoma.}
+\end{quote}
+
+\textbf{Objetivo} 
+\begin{itemize}
+    \item El Friction RCA(Root Cause Analysis) tiene como objetivo descubrir por qué existe una fricción.
+    \item Mientras el Friction Ledger responde a ``qué ocurre'' y ``cuánto cuesta'', el Friction RCA responde a ``por qué ocurre'' y ``qué debe cambiar en el flujo''. En general es mejor reordenar que rediseñar.
+\end{itemize}
+
+
+\textbf{Modo de uso}
+
+Deteccion 
+\begin{enumerate}
+    \item ¿En qué punto del proceso ocurre la fricción?
+    \item ¿Qué lo precede y qué lo sigue? ¿Qué equipos, sistemas o personas intervienen?
+    \item (Mapa mínimo de flujo: entrada → transformación → salida)
+\end{enumerate}
+
+Análisis causal (las tres raíces). Aplicar el principio de los ``3 Whys'' (por qué ×3).
+
+\begin{center}
+\begin{tabular}{l|l|p{5cm}|p{4cm}|p{3cm}|}
+\hline
+ID & Causa raíz & Descripción & Evidencia & Nivel \\ \hline
+F-001 & 1 & La rotación de credenciales es manual & Logs de fallos & Técnica \\ \hline
+F-001 & 2 & No existe ownership claro del secret store & Entrevista con DevOps & Organizacional \\ \hline
+F-001 & 3 & La política de rotación no está automatizada ni auditada & Documento de seguridad & Proceso \\ \hline
+\end{tabular}
+\end{center}
+
+Contramedidas propuestas. Cada causa raíz debe tener una respuesta proporcional y Kanso-alineada:
+
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{5cm}|p{3.5cm}|}
+\hline
+Tipo de causa & Contramedida Kanso & Regla aplicable \\ \hline
+Técnica & Automatizar rotación con Vault & Automatización \\ \hline
+Organizacional & Definir responsable de secretos & Estandarización \\ \hline
+Proceso & Incorporar rotación en pipeline CI/CD & Fluidez \\ \hline
+Organizacional & Reducir el número de aprobaciones & Simplicidad \\ \hline
+\end{tabular}
+\end{center}
+
+Validación de impacto esperado
+\begin{enumerate}
+    \item Horas recuperadas / mes
+    \item Nivel de reducción de IK estimado
+    \item Complejidad de implementación (Baja/Media/Alta)
+\end{enumerate}
+
+Resultado del Friction RCA
+\begin{itemize}
+    \item Documenta la causa raíz, su remedio y manual de implementación.
+    \item Permite que cada intervención deje aprendizaje institucional, no solo eficiencia temporal.
+    \item Crea un repositorio de patrones de fricción recurrentes que pueden preverse en futuros proyectos.
+\end{itemize}
+
+\textbf{Valor ejecutivo}
+\begin{itemize}
+    \item Para líderes técnicos: evita rediseños impulsivos; asegura que cada mejora tiene raíz verificada.
+    \item Para negocio: garantiza que los recursos se usan en resolver causas estructurales, no síntomas.
+    \item Para cultura: transforma la eliminación de fricciones en un proceso de aprendizaje colectivo.
+\end{itemize}
+
+{\epigraph{\textit{El objetivo del Friction RCA no es eliminar trabajo, sino rediseñar flujos para reducir handoffs innecesarios y bloqueos recurrentes.}}{}}
+
+\hrule
+% #################################################
+% #################################################
+\section{Harmony Board}
+\begin{quote}
+\textit{El tablero de gobernanza ligera.}
+\end{quote}
+
+El Harmony Board es el dashboard ejecutivo de Kanso. Consolida las métricas clave de eficiencia operativa (Índice Kanso, horas recuperadas, fricciones resueltas) en una vista mensual para stakeholders de negocio y tecnología.
+
+Basicamente es mostrar de forma clara y ejecutiva, cómo la organización está reduciendo el costo de complejidad a lo largo del tiempo.
+
+\textbf{Objetivo} 
+\begin{itemize}
+    \item Visibilizar resultados: que la reducción de fricciones se vea en métricas concretas.
+    \item Alinear negocio y tecnología: hablar en un mismo lenguaje (horas, dinero, valor recuperado).
+    \item Ritualizar la mejora continua: revisar mensualmente para no dejar que la complejidad vuelva a crecer en silencio.
+    \item Hacer gobernanza ligera: menos burocracia, más métricas automáticas.
+\end{itemize}
+
+\textbf{Modo de uso} 
+\begin{enumerate}
+    \item Revisión mensual en comité ejecutivo o con líderes de área.
+    \item Mostrar avances concretos (fricciones eliminadas, flujos añadidos).
+    \item Actualizar (en medida de lo posible) automáticamente datos desde tickets, pipelines y logs.
+\end{enumerate}
+
+
+Estructura de un Harmony Board. Cada entrada debe contener al menos:
+
+\begin{center}
+\begin{tabular}{|p{4cm}|l|l|l|l|}
+\hline
+Indicador & Septiembre & Octubre & Variación & Estado \\ \hline
+Índice Kanso (IK) & 22\% & 15\% & -7 pts & Warning \\ \hline
+Horas de fricción evitables & 480h & 320h & -33\% & OK \\ \hline
+Valor recuperado (USD) & \$24,000 & \$16,000 & -\$8,000 & OK \\ \hline
+Friction RCA activos & 3 & 5 & +2 & OK \\ \hline
+Top fricción resuelta & \multicolumn{2}{|l|}{CI/CD rotura de credenciales} & Eliminada & OK \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Valor ejecutivo}
+\begin{itemize}
+    \item Para el CFO: muestra en números el dinero ahorrado y horas recuperadas.
+    \item Para el CTO: evidencia qué integraciones y procesos mejoran la eficiencia.
+    \item Para los equipos: reconoce logros tangibles (menos horas de fricción).
+\end{itemize}
+
+{\epigraph{\textit{El Harmony Board proporciona visibilidad ejecutiva del progreso en reducción de fricción mediante métricas estandarizadas de eficiencia operativa.}}{}}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Principios Operativos de Kanso}
+
+El Kanso Framework se fundamenta en cuatro principios que sirven como brújula para guiar decisiones, prácticas y cultura organizacional. Estos principios guían decisiones operativas comunes donde la solución intuitiva (agregar herramientas o procesos) aumenta la complejidad en lugar de reducirla.\\
+
+\textbf{Simplicidad sobre complejidad}
+\begin{quote}
+\textit{La simplicidad operativa consiste en mantener únicamente los componentes que agregan valor directo al objetivo del sistema.}
+\end{quote}
+
+La complejidad suele nace por la necesidad de resolver problemas de forma cada vez más eficaz y eficiente, pero trae consigo el costo inherente a sí misma.
+
+La simplicidad es un acto consciente de diseño: elegir menos, pero mejor.
+
+En Kanso, se priorizan arquitecturas mínimas que hacen lo necesario, evitando adornos innecesarios que después se convierten en fricciones.
+
+Ejemplo:
+\begin{itemize}
+    \item Un pipeline de despliegue puede tener 15 pasos y 8 aprobaciones manuales. Con Kanso, se redefine para mantener solo los pasos críticos y automatizar el resto, logrando fluidez sin sacrificar control.
+\end{itemize}
+
+\textbf{Automatización sobre manualidad}
+\begin{quote}
+\textit{Lo que puede hacerse de forma automática no debe ser carga para la mente humana.}
+\end{quote}
+
+Las tareas repetitivas son caldo de cultivo para errores, dependencia de personas clave y retrasos innecesarios.
+
+Kanso impulsa la automatización como principio rector, no como parche tardío.
+
+El objetivo no es quitar humanidad, sino liberar la atención humana para lo estratégico y creativo.
+
+Ejemplo:
+\begin{itemize}
+    \item Si una alerta de infraestructura requiere siempre los mismos 4 comandos para remediarse, Kanso lo convierte en un runbook automatizado. El ingeniero se enfoca en las excepciones, no en el trabajo mecánico.
+\end{itemize}
+
+\textbf{Estandarización sobre redundancia}
+\begin{quote}
+\textit{Cada variación no esencial es una deuda que se acumula.}
+\end{quote}
+
+Los equipos tienden a resolver problemas con su propia ``receta'': diferentes scripts, lenguajes o frameworks para lo mismo.
+
+Esta diversidad sin propósito genera islas de conocimiento y aumenta el costo de complejidad.
+
+Kanso busca estándares claros: una manera preferida de hacer las cosas, que reduzca el número de opciones y mejore la mantenibilidad.
+
+Ejemplo:
+\begin{itemize}
+    \item Tres equipos usan diferentes herramientas de infraestructura como código (Terraform, Ansible y scripts bash). Kanso impulsa elegir un estándar común, documentarlo y aplicar gobernanza, reduciendo duplicidad y dependencias.
+\end{itemize}
+
+\textbf{Fluidez sobre fricción}
+\begin{quote}
+\textit{Los procesos deben adaptarse al trabajo, no el trabajo a los procesos.}
+\end{quote}
+
+Toda solución técnica introduce overhead operativo. El objetivo es minimizar los puntos de fricción innecesarios que bloquean o ralentizan el flujo de trabajo.
+
+Fluidez significa minimizar los puntos de contacto innecesarios, eliminar cuellos de botella y permitir que la energía se enfoque en la entrega de valor.
+
+En Kanso, cada fricción es vista como una señal: si algo se atasca o requiere esfuerzo desproporcionado, merece rediseño.
+
+Ejemplo:
+\begin{itemize}
+    \item Un equipo tarda días en desplegar porque cada área (desarrollo, seguridad, operaciones) pide validaciones manuales. Con Kanso, se implementa un flujo automatizado de CI/CD con gates de seguridad embebidos. El resultado es un despliegue fluido y seguro, sin burocracia excesiva.
+\end{itemize}
+
+\textbf{Dogma}
+
+Estos principios son heurísticas de decisión, no reglas absolutas. Se aplican según el contexto operativo. El Kanso Framework los utiliza como criterios de decisión pero siempre aplicado en un contexto y no tomarse de manera literal:
+\begin{itemize}
+    \item Ante dos caminos, se elige el más simple.
+    \item Ante una tarea repetitiva, se automatiza.
+    \item Ante múltiples formas de hacer lo mismo, se estandariza.
+    \item Ante un proceso con trabas, se rediseña para lograr fluidez.
+\end{itemize}
+
+De esta forma, Kanso convierte la reducción del costo de complejidad en una filosofía práctica, aplicable tanto en tecnología como en cualquier operación humana.\\
+
+\textbf{Modo de uso}
+\begin{itemize}
+    \item Tratar de reducir en la medida de lo posible una fricción. ¿Qué necesita esta fricción para reducir su impacto? Simplificar, Automatizar, Estandarizar o Fluir.
+\end{itemize}
+
+
+\textbf{Valor ejecutivo}
+\begin{itemize}
+    \item Para líderes: convierten la filosofía en reglas aplicables y rápidas de evaluar.
+    \item Para equipos: simplifican discusiones; no se debate en abstracto, se contrasta con reglas claras.
+    \item Para el framework: hacen que Kanso no sea solo teoría, sino algo práctico en la medida de lo posible.
+\end{itemize}
+
+{\epigraph{\textit{Los Principios Operativos de Kanso funcionan como criterios de decisión: ante dos alternativas, se elige la que reduce fricción medible.}}{}}
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Checklist de Clasificación de Fricciones}
+\begin{quote}
+\textit{No toda fricción puede ni debe eliminarse.}
+\end{quote}
+
+\textbf{Objetivo} 
+\begin{itemize}
+    \item Distinguir entre fricción inevitable y fricción evitable, asegurando que Kanso actúe solo donde el esfuerzo tiene retorno.
+\end{itemize}
+
+
+\textbf{Fricciones Inevitables (aceptar, contener o automatizar parcialmente)}
+
+Si se cumplen 3 o más de los siguientes criterios, la fricción se clasifica como inevitable:
+
+\begin{center}
+\begin{tabular}{|l|p{5cm}|p{6cm}|}
+\hline
+\# & Criterio & Ejemplo típico \\ \hline
+1 & Regulatoria o de compliance. & Validaciones SOX, PCI DSS, GDPR, etc. \\ \hline
+2 & Dependencia física o contractual. & Tiempos de proveedor o hardware externo. \\ \hline
+3 & Restricción técnica universal. & Latencia geográfica, límites de protocolo. \\ \hline
+4 & Costo de mitigación > beneficio esperado. & Automatización que costaría más que el ahorro. \\ \hline
+5 & Riesgo operativo alto si se elimina. & Control manual de seguridad que evita incidentes críticos. \\ \hline
+\end{tabular}
+\end{center}
+
+Tratamiento: documentar, contener, y optimizar su frecuencia, no eliminarla.\\
+
+\textbf{Fricciones Evitables (priorizar en Friction RCA)}\\
+
+Si se cumplen 2 o más de los siguientes criterios, la fricción se clasifica como evitable:
+
+\begin{center}
+\begin{tabular}{|l|p{5cm}|p{6cm}|}
+\hline
+\# & Criterio & Ejemplo típico \\ \hline
+1 & Repetitiva y/o manual. & Creación manual de tickets o reportes. \\ \hline
+2 & Redundante o duplicada. & Flujos paralelos que realizan la misma acción. \\ \hline
+3 & Falta de estandarización. & Configuraciones diferentes por equipo o entorno. \\ \hline
+4 & Error recurrente. & Deploys fallidos por pasos manuales. \\ \hline
+5 & Burocrática o sin valor añadido. & Aprobaciones jerárquicas que no cambian resultados. \\ \hline
+\end{tabular}
+\end{center}
+
+Tratamiento: priorizar en el Friction Ledger, ejecutar un Friction RCA y documentar su implementación.\\
+
+\textbf{Uso Práctico}
+
+\begin{center}
+\begin{tabular}{|l|p{6cm}|p{4cm}|}
+\hline
+Paso & Acción & Artefacto \\ \hline
+1 & Registrar la fricción detectada & Friction Ledger \\ \hline
+2 & Evaluar criterios inevitables/evitables & Checklist \\ \hline
+3 & Clasificar inevitable o evitable & Friction Ledger \\ \hline
+4 & Si evitable: lanzar Friction RCA y documentar \\ \hline
+5 & Si inevitable: documentar y contener & Harmony Board \\ \hline
+\end{tabular}
+\end{center}

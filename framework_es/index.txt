@@ -1,0 +1,30 @@
+Mi propuesta alternativa
+En lugar de "hacerlo estilo Scrum", estructúralo como un libro técnico bien diseñado:
+Arquitectura de 3 capas
+Capa 1: El Manifiesto (Páginas 1-8)
+
+Ordo Fluens
+El problema (Por qué ahora)
+La solución (Qué es Kanso en 2 párrafos)
+Los límites explícitos
+
+Propósito: Establecer identidad y filosofía. Lectores filosóficos terminan aquí satisfechos.
+Capa 2: El Sistema (Páginas 9-25)
+
+Definiciones fundamentales (fricción, OPEX, overhead, IK/IKA)
+Los 4 artefactos core (Ledger, RFA, Golden Flow, Harmony Board)
+Las Kanso Rules
+El Checklist de Clasificación (MOVIDO AQUÍ, cerca del inicio)
+
+Propósito: Mecánica del framework. Lectores prácticos pueden empezar aquí.
+Capa 3: La Implementación (Páginas 26-36)
+
+Roles y responsabilidades
+El Lumen y las sesiones
+Arquitectura operativa
+Sistema de madurez
+Patrones de resistencia y el Némesis
+
+Propósito: Guía de adopción. Lectores implementadores profundizan aquí.
+
+\epigraph{\textit{Vivimos la era del exceso de soluciones.}}{}

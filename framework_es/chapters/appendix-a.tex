@@ -1,0 +1,158 @@
+\chapter{Sinopsis}\label{chap:aa}
+
+% #################################################
+% #################################################
+\section{Resumen Ejecutivo}
+
+\subsection*{Problema}
+Cada nueva solución tecnológica que integramos trae fricciones: más procesos manuales, más dependencias y más costos ocultos. Estos costos rara vez aparecen en el TCO tradicional, pero terminan drenando OPEX en trabajo improductivo y ralentizando la entrega de valor.
+
+\subsection*{Solución}
+Kanso Framework es una metodología de gobernanza operativa que identifica y reduce costos invisibles derivados de fricciones organizacionales y técnicas, medidos como overhead del OPEX.
+
+\begin{itemize}
+    \item Clasifica fricciones en inevitables (OPEX natural) y evitables (overhead).
+    \item Mide, prioriza y elimina/reduce lo innecesario.
+    \item Encapsula lo inevitable con métodos claros y predecibles.
+\end{itemize}
+
+Inspirado en el principio zen kanso (simplicidad), convierte la complejidad inevitable en algo gobernable y elimina lo innecesario. Ayuda a optimizar el OPEX.
+
+\subsection*{Métrica clave}
+El Índice Kanso (IK) mide qué porcentaje del TCO se desperdicia en fricciones evitables.
+
+\begin{itemize}
+    \item <15\% = Fluido
+    \item 15--25\% = Controlado
+    \item >25\% = Caótico 
+\end{itemize}
+
+\subsection*{Artefactos}
+\begin{enumerate}
+    \item Índice Kanso (IK): la brújula de complejidad.
+    \item Friction Analysis Matrix: Detección de fricciones.
+    \item Friction Ledger: inventario vivo de fricciones con su costo real.
+    \item Harmony Board: tablero ejecutivo que traduce mejoras en métricas visibles.
+\end{enumerate}
+
+\subsection*{Beneficios}
+\begin{itemize}
+    \item Ahorro: reducción directa de OPEX desperdiciado.
+    \item Eficiencia: equipos que fluyen sin trabas, con menos errores y redundancias.
+    \item Cultura: un lenguaje común entre negocio y tecnología, basado en simplicidad y fluidez.
+\end{itemize}
+
+\textit{Kanso convierte fricción en fluidez y complejidad en simplicidad, liberando recursos para crear valor real.}
+\\
+\\
+\hrule
+% #################################################
+% #################################################
+\section{Quick Start para Scrum Masters}
+
+\subsection*{Propósito}
+Integrar el \textit{Kanso Framework} dentro de equipos ágiles sin modificar sus prácticas existentes.  
+El objetivo es que el Scrum Master o facilitador transforme la retrospección y la observación del flujo en oportunidades para reducir fricción operativa.
+
+\subsection*{Rol del Scrum Master en Kanso}
+\begin{itemize}
+    \item Actúa como \textbf{facilitador de fricciones}, no como ejecutor.
+    \item Introduce la medición de fricción en las ceremonias Scrum (daily, retro, sprint review).
+    \item Documenta y comunica las fricciones detectadas usando el \textit{Friction Ledger}.
+    \item Fomenta una cultura de mejora continua basada en datos, no en percepciones.
+\end{itemize}
+
+\subsection*{Cómo empezar en tres pasos}
+\begin{enumerate}
+    \item \textbf{Detecta fricciones recurrentes.}  
+    Durante las retrospectivas, pregunta: ``¿Qué tareas o procesos generan más esfuerzo o esperas innecesarias?''  
+    Registra cada fricción detectada.
+    
+    \item \textbf{Clasifica y prioriza.}  
+    Usa los criterios de Kanso para determinar si la fricción es \textbf{evitable} (redundancia, manualidad, error recurrente) o \textbf{inevitable} (regulación, restricción técnica).  
+    Prioriza las evitables y lanza un \textit{Friction RCA} con el equipo.
+    
+    \item \textbf{Mide y comunica.}  
+    Calcula el \textbf{Índice Kanso (IK)} del equipo quincenalmente:
+    \[
+    IK = \frac{Horas perdidas por fricciones evitables}{Horas totales del equipo} \times 100
+    \]  
+    Presenta su evolución en la Sprint Review o en el tablero de métricas del equipo.
+\end{enumerate}
+
+\subsection*{Herramientas y artefactos mínimos}
+\begin{itemize}
+    \item \textbf{Friction Ledger:} inventario de fricciones detectadas, con clasificación y costo estimado.
+    \item \textbf{Friction Analysis Matrix:} análisis causal colaborativo durante la retrospectiva.
+    \item \textbf{Harmony Board:} resumen visual del progreso de eficiencia operativa por sprint.
+\end{itemize}
+
+\subsection*{Buenas prácticas}
+\begin{itemize}
+    \item Evita transformar Kanso en burocracia: solo registra fricciones con impacto real.
+    \item Vincula cada fricción con una acción concreta o automatización propuesta.
+    \item Enfoca las retrospectivas en flujos, no en individuos.
+    \item Celebra las fricciones eliminadas como ``historias de valor recuperado''.
+\end{itemize}
+
+\textit{El Scrum Master no impone eficiencia; la hace visible para que el equipo la alcance por sí mismo.}
+\\
+\\
+\hrule
+% #################################################
+% #################################################
+
+\section{Quick Start para Tech Leads}
+
+\subsection*{Propósito}
+Aplicar el \textit{Kanso Framework} desde la perspectiva técnica para medir, automatizar y eliminar fricciones sin afectar la estabilidad operativa.
+
+\subsection*{Rol del Tech Lead en Kanso}
+\begin{itemize}
+    \item Actúa como \textbf{analista técnico de fricciones}.
+    \item Traduce tiempo perdido en métricas objetivas y económicas.
+    \item Lidera la ejecución de contramedidas derivadas del \textit{Friction RCA}.
+    \item Usa datos de observabilidad, CI/CD y tickets para alimentar el \textit{Friction Ledger}.
+\end{itemize}
+
+\subsection*{Pasos iniciales}
+\begin{enumerate}
+    \item \textbf{Registrar fricciones técnicas.}  
+    Identifica tareas recurrentes que consumen tiempo: integraciones rotas, pipelines lentos, alertas duplicadas, procesos manuales.  
+    Documenta cada una en el \textit{Friction Ledger}.
+
+    \item \textbf{Cuantificar impacto.}  
+    Estima el tiempo perdido mensual y multiplícalo por el costo hora promedio del rol afectado.  
+    Ejemplo:
+    \[
+    Costo mensual = 15\,h \times 50\,USD/h = 750\,USD
+    \]
+
+    \item \textbf{Ejecutar Friction RCA y aplicar contramedidas.}  
+    Usa el principio de los ``3 Whys'' para identificar la causa raíz y define acciones técnicas: automatizar, estandarizar o rediseñar.  
+    Documenta los pasos en un mini runbook.
+
+    \item \textbf{Calcular y visualizar el Índice Kanso (IK).}  
+    Integra la métrica al tablero de observabilidad o CI/CD:
+    \[
+    IK = \frac{Overhead (fricciones evitables)}{OPEX} \times 100
+    \]  
+    Un IK menor al 15\% indica un sistema fluido.
+\end{enumerate}
+
+\subsection*{Herramientas sugeridas}
+\begin{itemize}
+    \item \textbf{Friction Ledger:} YAML, CSV o base de datos ligera integrada con Jira, Prometheus o Grafana.
+    \item \textbf{Harmony Board:} panel de métricas con IK, horas recuperadas y fricciones resueltas.
+    \item \textbf{Scripts automáticos:} para recolectar métricas de logs, pipelines o tickets cerrados.
+\end{itemize}
+
+\subsection*{Buenas prácticas}
+\begin{itemize}
+    \item Prioriza automatizar las tareas que más horas improductivas consumen.
+    \item Comparte el IK y los logros en las reuniones de ingeniería para fomentar conciencia de eficiencia.
+    \item Mantén el \textit{Friction Ledger} como fuente única de verdad.
+    \item Involucra al \textit{Kanso Lead} o al Scrum Master para validar los avances desde la perspectiva operativa.
+\end{itemize}
+
+\textit{El Tech Lead no busca más velocidad, sino menos resistencia en el flujo técnico.}

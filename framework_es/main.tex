@@ -1,0 +1,83 @@
+\documentclass[12pt, a4paper, twoside]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage[a4paper, inner=25mm, outer=20mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\usepackage{epigraph}
+\makeindex
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot{} 
+\fancyfoot[L]{CC BY-SA 4.0}
+\fancyfoot[C]{Kanso Framework}
+\fancyfoot[R]{\thepage}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+
+    {\Huge \textbf{Kanso Framework}}\\[1cm]
+    {\Large The Operational Simplicity Framework}\\[2cm]
+    {\Large \textbf{Autor:} Eduardo López}\\[0.5cm]
+    {\large Ciudad de México}\\[0.5cm]
+    % {\large \today}\\[2.5cm]
+    % \includegraphics[width=0.3\textwidth]{portada}\\[1cm]
+    \vspace*{2cm}
+
+    \begin{minipage}{0.9\textwidth}
+        \footnotesize
+
+        \textit{ Este framework es de código abierto bajo licencia CC BY-SA 4.0. 
+        Las personas pueden adaptarlo y comercializarlo libremente, respetando 
+        únicamente la atribución al autor original y compartiendo mejoras bajo la misma licencia.}
+
+        \vspace{0.5em}
+        Más información: \url{https://creativecommons.org/licenses/by-sa/4.0/}
+
+        Sitio oficial: \url{https://kansoframework.org}
+
+        Contacto: \href{mailto:contact@kansoframework.org}{contact@kansoframework.org}
+
+    \end{minipage}
+\end{titlepage}
+
+
+\include{chapters/chapter-0.tex}
+
+\tableofcontents
+
+\mainmatter
+\include{chapters/chapter-1.tex}
+\include{chapters/chapter-2.tex}
+\include{chapters/chapter-3.tex}
+\include{chapters/chapter-4.tex}
+\appendix
+\include{chapters/appendix-a.tex}
+\include{chapters/appendix-b.tex}
+
+\backmatter
+\printindex
+
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{ejemplo}
+%     \caption{Imagen de ejemplo.}
+% \end{figure}
+
+\end{document}
