@@ -400,3 +400,67 @@ Antes de anunciar adopción de Kanso, valida:
 \textbf{Si 3+ son, empieza con Kanso Lite.}
 
 \textbf{Si todos son, considera Kanso Core.}
+\\
+\\
+
+\hrule
+% #################################################
+% #################################################
+\section{Operational Drift: la deriva natural de los sistemas}
+
+Incluso los sistemas bien diseñados tienden a degradarse con el tiempo.
+
+Kanso reconoce este fenómeno como Operational Drift: la desviación gradual entre el diseño operativo esperado y 
+la operación real del sistema, causada por cambios acumulativos, excepciones, atajos, decisiones locales, 
+crecimiento orgánico y ausencia de revisión deliberada.
+
+El drift operativo no aparece de un día para otro. Se instala lentamente, cuando:
+\begin{itemize}
+	\item La documentación deja de reflejar la realidad.
+	\item Los procesos incorporan pasos temporales que nunca se retiran.
+	\item Las excepciones se vuelven permanentes.
+	\item Nuevas dependencias se añaden sin rediseñar el flujo completo.
+	\item El ownership se vuelve ambiguo.
+	\item Se conserva trabajo heredado por inercia.
+\end{itemize}
+
+El resultado es un sistema que sigue funcionando, pero cada vez con más fricción, menos claridad y mayor costo de complejidad.
+
+Señales típicas de operational drift:
+\begin{itemize}
+	\item El flujo real ya no coincide con el flujo documentado.
+	\item Los equipos operan mediante conocimiento informal o “así se hace aquí”.
+	\item Existen pasos que nadie cuestiona, aunque ya no agregan valor.
+	\item Los tiempos de resolución o coordinación aumentan sin una causa técnica evidente.
+	\item El sistema requiere cada vez más explicaciones para poder operar.
+\end{itemize}    
+
+
+\hrule
+% #################################################
+% #################################################
+\section{Fragmentación y aislamiento del conocimiento}
+Una fuente recurrente de fricción operativa es la fragmentación del conocimiento: cuando la información crítica para operar un sistema está dispersa, incompleta, desactualizada o concentrada en pocas personas.
+
+El aislamiento del conocimiento ocurre cuando un proceso, herramienta o flujo depende del entendimiento tácito de individuos específicos, en lugar de descansar en prácticas compartidas, estándares claros y documentación suficiente para su reaplicación.
+
+Esta fricción suele manifestarse de las siguientes formas:
+
+\begin{itemize}
+    \item Un solo miembro del equipo sabe cómo resolver un problema recurrente.
+    \item La información operativa está repartida entre tickets, chats, documentos y memoria oral.
+    \item Equipos diferentes usan términos, criterios o procedimientos distintos para el mismo flujo.
+    \item La ausencia, rotación o saturación de una persona crítica degrada de inmediato la operación.
+    \item Las soluciones ya descubiertas no pueden reaplicarse fácilmente porque nunca se documentaron de forma útil.
+\end{itemize}
+
+La fragmentación del conocimiento incrementa el costo de complejidad porque:
+\begin{itemize}
+    \item Aumenta el tiempo de búsqueda y entendimiento;
+	\item Multiplica errores de interpretación;
+	\item Genera dependencia de personas clave;
+	\item Dificulta la estandarización;
+	\item Convierte aprendizajes previos en esfuerzo que debe rehacerse.
+\end{itemize}
+
+{\epigraph{\textit{El conocimiento que no puede encontrarse, entenderse o reaplicarse a tiempo, opera como si no existiera.}}{}}
