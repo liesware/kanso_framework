@@ -3,10 +3,10 @@ LaTeX source of the Kanso Framework — an open operational simplicity framework
 
 ## Download
 
-The latest public release of the Kanso Framework is **v0.9.0**.
+The latest public pre release of the Kanso Framework is **v0.9.6**.
 
 **PDF (Spanish)**  
-https://github.com/liesware/kanso_framework/releases/tag/v0.9.0
+https://github.com/liesware/kanso_framework/releases/tag/v0.9.6
 
 The PDF is published as a GitHub Release asset and is not tracked in the repository.
 
