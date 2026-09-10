@@ -17,8 +17,6 @@ Pre-release of kanso framework.
 | 7 | Duplicate sentence in §2.6 | Removed along with its orphaned quotation mark and broken list |
 | 8 | Kanso Full vs. light governance | Disclaimer with reversal criteria, based on the existing Golden Rule |
 
-Translated with DeepL.com (free version)
-
 
 ## v0.9.5
 
