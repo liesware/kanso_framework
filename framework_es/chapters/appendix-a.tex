@@ -19,7 +19,8 @@ Kanso Framework es una metodología de gobernanza operativa que identifica y red
 Inspirado en el principio zen kanso (simplicidad), convierte la complejidad inevitable en algo gobernable y elimina lo innecesario. Ayuda a optimizar el OPEX.
 
 \subsection*{Métrica clave}
-El Índice Kanso (IK) mide qué porcentaje del TCO se desperdicia en fricciones evitables.
+El Índice Kanso (IK) mide qué porcentaje del OPEX operativo se desperdicia en fricciones
+evitables. La definición completa, con su regla de alcance, está en la \hyperref[sec:ik]{sección~\ref{sec:ik}}.
 
 \begin{itemize}
     \item <15\% = Fluido
@@ -30,8 +31,8 @@ El Índice Kanso (IK) mide qué porcentaje del TCO se desperdicia en fricciones 
 \subsection*{Artefactos}
 \begin{enumerate}
     \item Índice Kanso (IK): la brújula de complejidad.
-    \item Friction Analysis Matrix: Detección de fricciones.
     \item Friction Ledger: inventario vivo de fricciones con su costo real.
+    \item Friction RCA: análisis de causa raíz y contramedidas.
     \item Harmony Board: tablero ejecutivo que traduce mejoras en métricas visibles.
 \end{enumerate}
 
@@ -73,17 +74,20 @@ El objetivo es que el Scrum Master o facilitador transforme la retrospección y 
     Prioriza las evitables y lanza un \textit{Friction RCA} con el equipo.
     
     \item \textbf{Mide y comunica.}  
-    Calcula el \textbf{Índice Kanso (IK)} del equipo quincenalmente:
+    Calcula el \textbf{Índice Kanso (IK)} del equipo quincenalmente. Si valoras todas las horas
+    a un mismo costo hora promedio, la tarifa se cancela en el numerador y el denominador, así que
+    basta con contar horas:
     \[
-    IK = \frac{Horas perdidas por fricciones evitables}{Horas totales del equipo} \times 100
+    IK = \frac{\text{horas perdidas por fricciones evitables}}{\text{horas totales del equipo}} \times 100
     \]  
-    Presenta su evolución en la Sprint Review o en el tablero de métricas del equipo.
+    Es la forma simplificada de la definición general (\hyperref[sec:ik]{sección~\ref{sec:ik}}), no una
+    métrica distinta. Presenta su evolución en la Sprint Review o en el tablero de métricas del equipo.
 \end{enumerate}
 
 \subsection*{Herramientas y artefactos mínimos}
 \begin{itemize}
     \item \textbf{Friction Ledger:} inventario de fricciones detectadas, con clasificación y costo estimado.
-    \item \textbf{Friction Analysis Matrix:} análisis causal colaborativo durante la retrospectiva.
+    \item \textbf{Friction RCA:} análisis causal colaborativo durante la retrospectiva.
     \item \textbf{Harmony Board:} resumen visual del progreso de eficiencia operativa por sprint.
 \end{itemize}
 
@@ -125,7 +129,7 @@ Aplicar el \textit{Kanso Framework} desde la perspectiva técnica para medir, au
     Estima el tiempo perdido mensual y multiplícalo por el costo hora promedio del rol afectado.  
     Ejemplo:
     \[
-    Costo mensual = 15\,h \times 50\,USD/h = 750\,USD
+    \text{Costo mensual} = 15\,\text{h} \times 50\,\text{USD/h} = 750\,\text{USD}
     \]
 
     \item \textbf{Ejecutar Friction RCA y aplicar contramedidas.}  
@@ -135,9 +139,11 @@ Aplicar el \textit{Kanso Framework} desde la perspectiva técnica para medir, au
     \item \textbf{Calcular y visualizar el Índice Kanso (IK).}  
     Integra la métrica al tablero de observabilidad o CI/CD:
     \[
-    IK = \frac{Overhead (fricciones evitables)}{OPEX} \times 100
+    IK = \frac{\text{Overhead}}{\text{OPEX}} \times 100
     \]  
-    Un IK menor al 15\% indica un sistema fluido.
+    Donde \textit{Overhead} son las horas consumidas por fricciones evitables valoradas a su costo
+    hora, y \textit{OPEX} las horas totales del alcance valoradas al mismo costo hora. La escala de
+    interpretación y la regla de alcance están en la \hyperref[sec:ik]{sección~\ref{sec:ik}}.
 \end{enumerate}
 
 \subsection*{Herramientas sugeridas}

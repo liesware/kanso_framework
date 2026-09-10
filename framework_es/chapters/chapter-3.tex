@@ -35,7 +35,7 @@ Business Link & No existe & Semi-formal & Formal \\ \hline
 \hrule
 % #################################################
 % #################################################
-\section{Kanso Lead: El Facilitador y Documentador}
+\section{Kanso Lead: El Facilitador y Documentador}\label{sec:dedicacion}
 
 Naturaleza del rol: Detective + Facilitador de Información + Archivista\\
 
@@ -102,7 +102,7 @@ Facilitación de Ceremonias
 Entregables
 \begin{itemize}
     \item Friction Ledger actualizado semanalmente
-    \item Friction Analysis Matrix Board con análisis causales completos
+    \item Friction RCA con análisis causales completos
     \item Documentación de Implementación con pasos de reaplicación
     \item Índice de Friction RCAs ordenado y mantenido
     \item IK Dashboard con métricas mensuales
@@ -145,16 +145,34 @@ Perfil Ideal
 \end{itemize}
 
 Dedicación por Fase
+
+Las cifras siguientes son \textbf{por equipo en alcance}, no por organización.
+
 \begin{center}
 \small
-\begin{tabular}{|l|c|l|}
+\begin{tabular}{|l|c|c|p{4.5cm}|}
 \hline
-\textbf{Fase} & \textbf{Horas/semana} & \textbf{Puede ser} \\ \hline
-Kanso Lite & 2-4h & Part-time, rotativo \\ \hline
-Kanso Core & 4-6h & Part-time formal \\ \hline
-Kanso Full & 6-8h & Part-time o Full-time (50\%) \\ \hline
+\textbf{Fase} & \textbf{Horas/semana por equipo} & \textbf{FTE por equipo} & \textbf{Puede ser} \\ \hline
+Kanso Lite & 2-4h & 0.05-0.10 & Part-time, rotativo \\ \hline
+Kanso Core & 4-6h & 0.10-0.15 & Part-time formal \\ \hline
+Kanso Full & 6-8h & 0.15-0.20 & Part-time formal, coordinado con el Kanso Office \\ \hline
 \end{tabular}
 \end{center}
+
+\textbf{Regla de escala.} La dedicación del Kanso Lead se calcula por equipo cubierto y se agrega:
+
+\begin{center}
+Dedicación total = (horas/semana por equipo) $\times$ (número de equipos en alcance)
+\end{center}
+
+Un Kanso Lead de Core que atiende un solo equipo dedica 4-6 h/semana (0.10-0.15 FTE); uno que
+cubre cuatro equipos dedica 16-24 h/semana (0.4-0.6 FTE). Las cifras en FTE que aparecen más
+adelante en los perfiles y presupuestos son el agregado de esta misma tasa, no un estándar
+distinto.
+
+\textit{Supuestos de conversión:} 1 FTE = 40 h/semana = 2.080 h/año. El costo hora de referencia
+es de \$50 USD, el mismo de la escala del anclaje cuantitativo
+(\hyperref[sec:anclaje]{sección~\ref{sec:anclaje}}).
 
 Métricas de Éxito del Rol
 \begin{itemize}
@@ -506,8 +524,8 @@ Métricas de Éxito del Rol
 \textbf{Dimensión} & \textbf{Kanso Lead} & \textbf{Friction Resolvers} & \textbf{Business Link} \\ \hline
 \textbf{Función principal} & Facilita y documenta & Propone y ejecuta & Prioriza y aprueba \\ \hline
 \textbf{Poder de decisión} & Cómo facilitar el proceso & Cómo implementar soluciones & Qué priorizar y recursos \\ \hline
-\textbf{Dedicación (Core)} & 4-6h/semana & 2-3h/semana/persona & 1-2h/mes \\ \hline
-\textbf{Artefactos clave} & Friction Ledger, Friction Analysis Matrix, Índice & Documentación de Implementación(pasos), Soluciones & Decisiones de priorización \\ \hline
+\textbf{Dedicación (Core)} & 4-6h/semana por equipo & 2-3h/semana/persona & 1-2h/mes \\ \hline
+\textbf{Artefactos clave} & Friction Ledger, Friction RCA, Índice & Documentación de Implementación(pasos), Soluciones & Decisiones de priorización \\ \hline
 \textbf{Interacción con otros} & Facilita a todos & Colabora con Lead, reporta a Link & Recibe info de Lead, dirige a Friction Resolvers \\ \hline
 \textbf{NO hace} & Ejecutar, proponer, priorizar & Facilitar, mantener ledger, aprobar & Facilitar, ejecutar, documentar \\ \hline
 \textbf{Señal de éxito} & Artefactos actualizados,Friction RCAs claros & Soluciones implementadas, documentadas & IK mejorando, equipo empoderado \\ \hline
@@ -542,7 +560,7 @@ Métricas de Éxito del Rol
 Sí, especialmente en equipos pequeños. Un Tech Lead puede ser Kanso Lead + Business Link temporalmente. Lo importante es separar las funciones mentalmente.
 
 \textit{¿Qué pasa si nadie quiere ser Kanso Lead?}\\ 
-Rota el rol cada trimestre. 4-6h/semana no es una carga grande si se distribuye. Alternativamente, un PM o Scrum Master puede asumir naturalmente.
+Rota el rol cada trimestre. 4-6h/semana por equipo no es una carga grande si se distribuye. Alternativamente, un PM o Scrum Master puede asumir naturalmente.
 
 \textit{¿Friction Resolvers debe documentar TODAS las soluciones?}\\ 
 No. Solo soluciones complejas (>8h trabajo) y reutilizables. Quick wins triviales no necesitan documentación extensa.
@@ -587,8 +605,8 @@ El ciclo de trabajo se organiza en actividades distribuidas estratégicamente a 
 \hline
 \textbf{Día/Período} & \textbf{Actividad} & \textbf{Artefactos / Resultados} \\ \hline
 Durante todo el ciclo & Detección de fricciones mediante entrevistas informales, análisis de logs, revisión de tickets y monitoreo de pipelines. & Llenado progresivo del \textit{Friction Ledger} con eventos de fricción categorizados y cuantificados. \\ \hline
-Durante todo el ciclo  & Análisis Friction RCA: evaluación de Riesgo, Frecuencia y Alcance de cada fricción detectada. & Llenado y actualización del \textit{Friction Analysis Matrix} con puntuaciones y prioridades calculadas. \\ \hline
-A la mitad del ciclo & Sesión de revisión del \textit{Friction Analysis Matrix}: validación de prioridades y aprobación de reordenamientos. & Decisiones documentadas sobre qué fricciones atacar en el siguiente ciclo operativo del equipo. \\ \hline
+Durante todo el ciclo  & Análisis Friction RCA: identificación de la causa raíz de las fricciones priorizadas mediante los 3 Whys. & Un \textit{Friction RCA} documentado por fricción: causa raíz, evidencia, nivel y contramedida propuesta. \\ \hline
+A la mitad del ciclo & Sesión de revisión del \textit{Friction Ledger}: validación de prioridades y aprobación de reordenamientos. & Decisiones documentadas sobre qué fricciones atacar en el siguiente ciclo operativo del equipo. \\ \hline
 Al final del ciclo & Actualización de métricas del sistema: recálculo del Índice Kanso y otras métricas derivadas. & Nuevo IK parcial, variación porcentual documentada, tendencias identificadas. \\ \hline
 Cierre del ciclo  & Generación de reporte de resultados del ciclo completo. & Minireporte visual o entrada automática en el \textit{Harmony Board} con resumen ejecutivo de mejoras implementadas. \\ \hline
 \end{tabular}
@@ -600,7 +618,7 @@ Un ciclo de trabajo se considera exitoso cuando cumple con los siguientes criter
 
 \begin{itemize}
     \item Al menos 50\% de las fricciones detectadas están documentadas en el \textit{Friction Ledger}.
-    \item El \textit{Friction Analysis Matrix} contiene análisis cuantitativo completo para todas las fricciones prioritarias.
+    \item Cada fricción prioritaria tiene un \textit{Friction RCA} con causa raíz y contramedida documentadas.
     \item Se han aprobado al menos 3 acciones concretas de reducción de fricción para el siguiente ciclo.
     \item El IK muestra variación medible (positiva o negativa) respecto al ciclo anterior.
     \item El reporte de cierre está disponible para consulta del equipo antes del inicio del siguiente ciclo operativo.
@@ -618,7 +636,7 @@ Un ciclo de trabajo se considera exitoso cuando cumple con los siguientes criter
 \hline
 Artefacto & Propósito & Contenido principal \\ \hline
 Friction Ledger & Registro vivo y cuantificable de fricciones. & ID, descripción, costo, evidencia, acción sugerida. \\ \hline
-Friction Analysis Matrix & Diagnóstico causal y reordenamiento empírico. & Causas raíz, contramedidas Kanso, impacto estimado. \\ \hline
+Friction RCA & Diagnóstico causal y reordenamiento empírico. & Causas raíz, contramedidas Kanso, impacto estimado. \\ \hline
 Harmony Board & Visión mensual y evolutiva del IK. & Indicadores, variaciones, estado de cada flujo. \\ \hline
 \end{tabular}
 \end{center}
@@ -665,7 +683,7 @@ Columnas básicas:
 \begin{tabular}{|p{3.5cm}|l|l|l|l|}
 \hline
 Indicador & Sept & Oct & Variación & Estado \\ \hline
-IK & 22\% & 15\% & -7 pts & OK \\ \hline
+IK & 22\% & 15\% & -7 pts & Warning \\ \hline
 Horas evitables & 480 & 320 & -33\% & OK \\ \hline
 Valor recuperado & \$24,000 & \$16,000 & -8k & OK \\ \hline
 Friction RCA Cerradas & 3 & 5 & +2 & OK \\ \hline
@@ -699,16 +717,19 @@ Leadership team completo & Strategic Review & Cada 3 meses & Evaluar tendencias,
 Evaluar el progreso cultural y operativo de la organización.
 
 \begin{center}
-\begin{tabular}{|l|p{3cm}|p{6cm}|p{2cm}|}
+\begin{tabular}{|c|p{2.5cm}|p{5.5cm}|p{1.8cm}|p{1.8cm}|}
 \hline
-Nivel & Nombre & Características & IK Promedio \\ \hline
-1 & Caótico & No hay visibilidad, alta fricción. & >25\% \\ \hline
-3 & Controlado & Quick Wins activos, ledger consistente. & >10--25\% \\ \hline
-5 & Fluido & Operación armónica, fricciones autogestionadas. & <10\% \\ \hline
+Nivel & Nombre & Características & IK & Zona \\ \hline
+1 & Caótico & No hay visibilidad, alta fricción. & >25\% & Roja \\ \hline
+2 & Controlado & Quick Wins activos, ledger consistente. & 15--25\% & Amarilla \\ \hline
+3 & Fluido & Operación armónica, fricciones autogestionadas. & <15\% & Verde \\ \hline
 \end{tabular}
 \end{center}
 
-Meta global: mantener IK < 15\% y evolución continua de madurez.
+Las bandas y las zonas son las definidas en \hyperref[sec:ik]{sección~\ref{sec:ik}}; esta tabla
+sólo las traduce a estadios de madurez organizacional.
+
+Meta global: alcanzar y sostener el Nivel 3 (IK <15\%), con evolución continua de madurez.
 \\
 \\
 \hrule
@@ -737,7 +758,7 @@ Versión mínima viable de Kanso, diseñada para equipos que inician su camino h
 \textbf{Componentes Activos}
 \begin{itemize}
     \item Friction Ledger simplificado: Registro básico en hoja de cálculo o documento compartido
-    \item Índice Kanso básico: Cálculo mensual manual utilizando únicamente las 3-4 métricas más accesibles
+    \item Índice Kanso básico: Cálculo mensual manual sobre horas estimadas por el propio equipo (Precisión Nivel 1: $\pm$50\%)
     \item Reunión mensual de fricción: Sesión de 1 hora para revisar fricciones detectadas
     \item Responsable rotativo: Miembro del equipo que asume el rol de observador por ciclos de 1 mes
 \end{itemize}
@@ -749,8 +770,8 @@ Versión mínima viable de Kanso, diseñada para equipos que inician su camino h
 \hline
 \textbf{Artefacto} & \textbf{Implementación en Lite} \\ \hline
 Friction Ledger & Hoja de cálculo compartida con columnas: Fecha, Descripción, Categoría, Impacto (Alto/Medio/Bajo) \\ \hline
-Índice Kanso & Cálculo manual mensual con 3-4 métricas básicas (ej: tiempo promedio de resolución, tickets bloqueados, interrupciones por día) \\ \hline
-Friction Analysis Matrix & No implementado (se usa evaluación cualitativa simple) \\ \hline
+Índice Kanso & Cálculo manual mensual sobre horas auto-reportadas por el equipo en la reunión de fricción (Precisión Nivel 1: $\pm$50\%) \\ \hline
+Friction RCA & Simplificado o ausente: evaluación cualitativa sin análisis causal formal \\ \hline
 Harmony Board & No implementado \\ \hline
 \end{tabular}
 \end{center}
@@ -776,7 +797,7 @@ Un equipo debe considerar migrar a Kanso Core cuando:
 \begin{itemize}
     \item Ha completado al menos 3 ciclos mensuales consecutivos exitosamente
     \item El Friction Ledger contiene más de 30 entradas documentadas
-    \item La organización puede asignar al menos 25\% del tiempo de una persona al rol de Kanso Lead
+    \item La organización puede asignar 4-6 h/semana por equipo al rol de Kanso Lead (unos 10-15\% del tiempo de una persona por cada equipo cubierto)
     \item Existe demanda interna por análisis más sofisticado de fricciones
 \end{itemize}
 
@@ -789,7 +810,7 @@ Implementación completa del marco Kanso tal como fue diseñado originalmente. I
 \textbf{Perfil de Organización}
 \begin{itemize}
     \item Equipos medianos a grandes (10-50 personas o múltiples equipos)
-    \item Capacidad de asignar un Kanso Lead dedicado (50-100\% de su tiempo)
+    \item Capacidad de asignar un Kanso Lead formal con 4-6 h/semana por equipo cubierto (0.1-0.6 FTE según el número de equipos)
     \item Infraestructura técnica para automatización y monitoreo
     \item Cultura organizacional abierta a la mejora continua basada en datos
     \item Presupuesto disponible para herramientas y capacitación
@@ -797,10 +818,10 @@ Implementación completa del marco Kanso tal como fue diseñado originalmente. I
 
 \textbf{Componentes Activos}
 \begin{itemize}
-    \item Rol formal de Kanso Lead: Persona dedicada con responsabilidad y autoridad sobre el proceso
+    \item Rol formal de Kanso Lead: Rol con responsabilidad y autoridad sobre el proceso
     \item Friction Ledger completo: Sistema estructurado de registro con categorización detallada
-    \item Friction Analysis Matrix: Análisis cuantitativo sistemático de Riesgo, Frecuencia y Alcance
-    \item Índice Kanso: Cálculo quincenal o semanal con conjunto completo de métricas
+    \item Friction RCA: Análisis causal sistemático (3 Whys) de las fricciones priorizadas
+    \item Índice Kanso: Cálculo quincenal o semanal sobre horas medidas con evidencia semi-automatizada (Precisión Nivel 2: $\pm$30\%)
     \item Harmony Board: Dashboard ejecutivo para visualización de tendencias
     \item Ciclo de trabajo de 2 semanas: Estructura completa según especificación estándar
 \end{itemize}
@@ -812,8 +833,8 @@ Implementación completa del marco Kanso tal como fue diseñado originalmente. I
 \hline
 \textbf{Artefacto} & \textbf{Implementación en Core} \\ \hline
 Friction Ledger & Base de datos o sistema de tickets estructurado con campos completos: ID, timestamp, categoría, descripción detallada, equipo afectado, tiempo perdido estimado, estado, resolución \\ \hline
-Friction Analysis Matrix & Matriz cuantitativa con scoring automatizado, actualización semanal, visualización priorizada \\ \hline
-Índice Kanso & Cálculo automatizado quincenal/semanal con 8-12 métricas ponderadas, tendencias históricas \\ \hline
+Friction RCA & Análisis causal documentado por fricción con causa raíz, contramedida y pasos de reaplicación; índice consultable \\ \hline
+Índice Kanso & Cálculo automatizado quincenal/semanal a partir de horas registradas en tickets, logs de CI/CD y reuniones de coordinación (Precisión Nivel 2: $\pm$30\%), con tendencias históricas \\ \hline
 Harmony Board & Dashboard ejecutivo en tiempo real con KPIs principales, alertas de degradación, reportes automatizados \\ \hline
 Friction Reports & Reportes quincenales estructurados con análisis de tendencias y recomendaciones \\ \hline
 \end{tabular}
@@ -839,7 +860,7 @@ Ciclo quincenal completo según especificación estándar:
 
 \textbf{Equipo Mínimo}
 \begin{itemize}
-    \item 1 Kanso Lead dedicado (50-100\% tiempo)
+    \item 1 Kanso Lead formal: 0.1-0.6 FTE según los equipos que cubra (\hyperref[sec:dedicacion]{sección~\ref{sec:dedicacion}})
     \item Soporte ejecutivo (sponsor que valide decisiones estratégicas)
     \item Colaboración activa de tech leads o managers de equipo
 \end{itemize}
@@ -890,7 +911,7 @@ Chief Kanso Officer & Responsable de la estrategia de eficiencia organizacional,
 Kanso Operations Manager & Coordinación operativa del Kanso Office, estandarización de procesos \\ \hline
 Kanso Data Analyst & Análisis avanzado, modelado predictivo, generación de insights \\ \hline
 Kanso Leads (múltiples) & Implementación en equipos individuales, reportan matricialmente al Kanso Office \\ \hline
-Kanso Champions & Evangelistas en equipos sin Kanso Lead dedicado, rol de 10-20\% tiempo \\ \hline
+Kanso Champions & Evangelistas en equipos sin Kanso Lead asignado, rol de 5-10\% tiempo \\ \hline
 \end{tabular}
 \end{center}
 
@@ -901,8 +922,7 @@ Kanso Champions & Evangelistas en equipos sin Kanso Lead dedicado, rol de 10-20\
 \begin{tabular}{|p{4cm}|p{9cm}|}
 \hline
 \textbf{Artefacto} & \textbf{Implementación en Full} \\ \hline
-Enterprise Friction Ledger & Agregación de fricciones de todos los equipos con taxonomía unificada, análisis de tendencias corporativas \\ \hline
-Global Friction Analysis Matrix & Priorización corporativa considerando impacto cross-team y dependencias \\ \hline
+Enterprise Friction Ledger & Agregación de fricciones de todos los equipos con taxonomía unificada, análisis de tendencias corporativas y priorización corporativa considerando impacto cross-team y dependencias \\ \hline
 Comparative IK Dashboard & Índices Kanso por equipo, división, geografía; rankings y percentiles internos \\ \hline
 Friction Flow Analysis & Mapeo de cómo las fricciones se propagan entre equipos y sistemas \\ \hline
 Executive Harmony Suite & Suite de dashboards para C-level con KPIs estratégicos y alertas de riesgo sistémico \\ \hline
@@ -949,10 +969,10 @@ Kanso Full opera en tres niveles temporales sincronizados:
 \hline
 \textbf{Componente} & \textbf{Inversión Estimada} \\ \hline
 Equipo Kanso Office & 2-4 FTEs (salarios + overhead) \\ \hline
-Kanso Leads distribuidos & 0.5-1 FTE por equipo de 15-20 personas \\ \hline
+Kanso Leads distribuidos & 0.15-0.2 FTE por equipo de 15-20 personas (6-8 h/semana) \\ \hline
 Infraestructura tecnológica & \$50K-200K anuales (herramientas, integraciones) \\ \hline
 Capacitación y onboarding & \$20K-50K inicial + \$10K anual \\ \hline
-\textbf{Total anual} & \textbf{\$300K-800K} (org de 200-500 personas) \\ \hline
+\textbf{Total anual} & \textbf{\$425K-1.3M} (org de 200-500 personas, es decir 10-33 equipos) \\ \hline
 \end{tabular}
 \end{center}
 
@@ -975,6 +995,28 @@ Una organización debe considerar Kanso Full cuando:
     \item Existe presupuesto y commitment para sostener el Kanso Office por al menos 2 años
 \end{itemize}
 
+\textbf{El Kanso Office no está exento de Kanso}
+
+Una gobernanza que no se mide a sí misma es exactamente el \textit{Némesis} que describe el
+capítulo~\ref{chap:four}: un flujo que consume tiempo sin mejorar su propio rendimiento. Kanso Full
+es la parte del framework más expuesta a esa crítica, así que se somete a sus propias reglas:
+
+\begin{itemize}
+    \item Las horas del Kanso Office y de la red de Kanso Leads \textbf{cuentan como overhead} en el
+    IK de la organización. No se excluyen del cálculo ni se contabilizan aparte: si la gobernanza
+    crece más de lo que resuelve, el IK empeora y lo hace visible.
+    \item El Office se somete a la Regla de Oro (\hyperref[sec:rop]{sección~\ref{sec:rop}}): el
+    tiempo que ahorra debe exceder al que consume.
+    \item \textbf{Criterio de reversión:} si el Retorno Operacional Positivo es negativo dos
+    trimestres consecutivos, Kanso Full se reduce a Core. La estructura se simplifica antes que
+    justificarse a sí misma.
+\end{itemize}
+
+Kanso Full no es el destino obligatorio del framework, sino la respuesta a un problema concreto de
+coordinación entre equipos. Si ese problema no existe, la respuesta correcta es Core.
+
+\vspace{1em}
+
 \hrule
 % #################################################
 % #################################################
@@ -986,8 +1028,8 @@ Una organización debe considerar Kanso Full cuando:
 \hline
 \textbf{Criterio} & \textbf{Kanso Lite} & \textbf{Kanso Core} & \textbf{Kanso Full} \\ \hline
 Tamaño de equipo & 3-10 personas & 10-50 personas & 50+ personas (múltiples equipos) \\ \hline
-Recursos dedicados & 0.1 FTE rotativo & 0.5-1 FTE Kanso Lead & 2-5 FTEs Kanso Office \\ \hline
-Inversión anual & <\$5K & \$50K-150K & \$300K-800K \\ \hline
+Recursos dedicados & 0.05-0.1 FTE rotativo & 0.1-0.6 FTE Kanso Lead & 2-4 FTE Kanso Office + 0.15-0.2 FTE por equipo \\ \hline
+Inversión anual & \$5K-10K & \$15K-80K & \$425K-1.3M \\ \hline
 Complejidad infraestructura & Mínima (spreadsheet) & Media (tracking + dashboard) & Alta (data warehouse + BI) \\ \hline
 Tiempo de setup & 1-2 semanas & 1-2 meses & 3-6 meses \\ \hline
 Frecuencia métricas & Mensual & Quincenal/Semanal & Continua (real-time) \\ \hline
@@ -1005,7 +1047,7 @@ Se sugiere comenzar siempre con Kanso Lite para validar fit cultural y compromis
 % #################################################
 \section{Métodos de Cuantificación de Fricciones}
 
-\subsubsection{Nivel 1 - Estimación Subjetiva (Kanso Lite)}
+\subsubsection{Precisión Nivel 1 - Estimación Subjetiva (Kanso Lite)}
 
 \begin{itemize}
     \item Auto-reporte del equipo en retrospectivas
@@ -1013,7 +1055,7 @@ Se sugiere comenzar siempre con Kanso Lite para validar fit cultural y compromis
     \item Suficiente para identificar fricciones mayores
 \end{itemize}
 
-\subsubsection{Nivel 2 - Medición Semi-Automatizada (Kanso Core)}
+\subsubsection{Precisión Nivel 2 - Medición Semi-Automatizada (Kanso Core)}
 
 \begin{itemize}
     \item Tiempo registrado en tickets tagged como ``friction-related''
@@ -1022,7 +1064,7 @@ Se sugiere comenzar siempre con Kanso Lite para validar fit cultural y compromis
     \item Precisión: $\pm$30\%
 \end{itemize}
 
-\subsubsection{Nivel 3 - Telemetría Automatizada (Kanso Full)}
+\subsubsection{Precisión Nivel 3 - Telemetría Automatizada (Kanso Full)}
 
 \begin{itemize}
     \item Instrumentación de sistemas con OpenTelemetry
@@ -1033,10 +1075,10 @@ Se sugiere comenzar siempre con Kanso Lite para validar fit cultural y compromis
 
 \subsubsection{Regla de Pragmatismo}
 
-Comenzar siempre con Nivel 1. Subir de nivel solo cuando:
+Comenzar siempre con Precisión Nivel 1. Subir de nivel solo cuando:
 
 \begin{enumerate}
     \item El equipo ya tiene disciplina de registro
-    \item El IK $>$ 20\% por 3 meses consecutivos
+    \item El IK se mantiene fuera de la zona verde ($>$15\%) durante 3 meses consecutivos
     \item Existe presupuesto para herramientas de telemetría
 \end{enumerate}

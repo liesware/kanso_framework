@@ -75,7 +75,7 @@ Fuentes de evidencia:
 \hrule
 % #################################################
 % #################################################
-\section{Costo de Complejidad}
+\section{Costo de Complejidad}\label{sec:cc}
 
 El costo de complejidad es el costo total de fricciones de operar y/o introducir soluciones no plug-and-play 
 \footnote{La soluciones plug and play son casi inexistentes pero se utiliza como termino de referecnia.} 
@@ -102,8 +102,8 @@ En resumen, es el costo que genera la complejidad de las interacciones entre los
 {\textbf{TCO vs Costo de Complejidad}}
 \\
 El TCO (Total Cost of Ownership) es el costo total de poseer y operar una solución durante todo su ciclo de vida. 
-El Costo de Complejidad son 2 subconjuntos del TCO, estos son el OPEX (visible) y el overhead operativo causado por 
-fricciones evitables (Overhead del OPEX usualmente oculto).
+El Costo de Complejidad son 2 subconjuntos del TCO: el OPEX natural (visible) y el Overhead del
+OPEX (usualmente oculto), causado por fricciones evitables.
 \\
 \\
 Ejemplo:
@@ -118,7 +118,7 @@ para que se integren con tu sistema de alertas, más horas de troubleshooting po
 {\textbf{OPEX vs Costo de Complejidad}}
 \\
 OPEX es el gasto recurrente y operativo que permite que las soluciones funcionen día a día. 
-El Costo de Complejidad es el OPEX más los gastos ocultos de operar una solución, es decir:
+El Costo de Complejidad es el OPEX natural más los gastos ocultos de operar una solución, es decir:
 Cuando las fricciones evitables = 0, el costo de complejidad se reduce al OPEX natural (fricciones inevitables). 
 El problema aparece cuando el esfuerzo operativo deja de ser natural y se convierte en un overhead que no genera 
 valor directo: como integraciones deficientes, procesos redundantes o falta de automatización.
@@ -143,19 +143,30 @@ En otras palabras:
     \item Es el tiempo desperdiciado en fricciones innecesarias que no generan valor.
 \end{itemize}
 
-{\textbf{Diferencia Conceptual}}
+{\textbf{Términos}}
+
+Cuatro conceptos que conviene no confundir, porque a menudo comparten la misma palabra:
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|p{3.5cm}|p{4.5cm}|p{6cm}|}
+\small
+\begin{tabular}{|p{3.4cm}|p{10.4cm}|}
 \hline
-\textbf{Concepto} & \textbf{Naturaleza} & \textbf{Relación con el Costo de Complejidad} \\ \hline
-TCO & Costo total de poseer una solución (CAPEX + OPEX + costos indirectos). & El Costo de Complejidad está dentro del TCO. Es una parte variable y dinámica que depende de las fricciones que genera la solución. \\ \hline
-OPEX & Parte recurrente del TCO (operación diaria). & El Costo de Complejidad se manifiesta principalmente dentro del OPEX como sobrecarga o desperdicio operativo. \\ \hline
-Costo de Complejidad & Efecto emergente dentro del TCO y del OPEX causado por fricciones evitables. & Puede entenderse como OPEX natural + overhead, o como la diferencia entre OPEX ideal y OPEX real. \\ \hline
+\textbf{Término} & \textbf{Qué es} \\ \hline
+TCO & Costo total de poseer una solución durante todo su ciclo de vida: CAPEX + OPEX + costos indirectos. \\ \hline
+OPEX & Gasto recurrente de operación en sentido contable: incluye licencias, infraestructura y servicios, además del trabajo humano. \\ \hline
+OPEX natural & La parte del esfuerzo operativo humano que corresponde a fricciones \textit{inevitables}. Es el piso: existe incluso con el mejor diseño. \\ \hline
+Overhead del OPEX & La parte del esfuerzo operativo humano que corresponde a fricciones \textit{evitables}. Es lo que Kanso reduce. \\ \hline
+Costo de Complejidad & OPEX natural + Overhead del OPEX: todo el esfuerzo operativo humano que exige el alcance medido. Es el denominador del Índice Kanso. \\ \hline
 \end{tabular}
 \end{table}
 
+El Costo de Complejidad está dentro del TCO y se manifiesta dentro del OPEX, pero no es ninguno de
+los dos: el TCO incluye CAPEX, sobre el que ninguna reducción de fricción puede actuar, y el OPEX
+incluye gastos no laborales que tampoco. Cuando las fricciones evitables llegan a cero, el Costo de
+Complejidad se reduce a su piso, el OPEX natural.
+
+\vspace{1em}
 
 \hrule
 % #################################################
@@ -175,7 +186,7 @@ En este sentido, el costo de complejidad no surge solo por agregar componentes, 
 % #################################################
 % #################################################
 
-\section{Anclaje cuantitativo de la fricción}
+\section{Anclaje cuantitativo de la fricción}\label{sec:anclaje}
 
 {\textbf{Definición general}}\\
 Fricción operativa = tiempo improductivo invertido en resolver o compensar ineficiencias del sistema.\\
@@ -269,7 +280,7 @@ Adoptar Kanso es adoptar una cultura de simplicidad consciente.
 \hrule
 % #################################################
 % #################################################
-\section{Índice Kanso}
+\section{Índice Kanso}\label{sec:ik}
 \begin{quote}
 \textit{La métrica del costo de complejidad.}
 \end{quote}
@@ -280,32 +291,50 @@ El Índice Kanso (IK) es la métrica central del framework. Cuantifica qué porc
 Se expresa como una proporción:
 
 \[
-IK = \frac{Overhead}{OPEX} \times 100
+IK = \frac{\text{Overhead}}{\text{OPEX}} \times 100
 \]
 
 Donde:
 \begin{itemize}
-    \item Overhead = horas desperdiciadas (fricciones evitables) × costo hora.
+    \item \textbf{Overhead} = horas dedicadas a fricciones evitables $\times$ costo hora del rol afectado.
+    \item \textbf{OPEX} = horas totales del alcance medido $\times$ costo hora del rol afectado. Este denominador es exactamente el \textit{Costo de Complejidad} del alcance medido (\hyperref[sec:cc]{sección~\ref{sec:cc}}).
 \end{itemize}
+
+\textbf{Regla de alcance.} El numerador y el denominador deben cubrir el mismo alcance
+---un equipo, un área o la organización completa--- y el mismo periodo. Dos IK calculados sobre
+alcances distintos no son comparables entre sí, y esa comparabilidad es justamente lo que sostiene
+el seguimiento de tendencias y el benchmarking interno entre equipos.
+
+\textbf{Base de medición.} El IK se calcula sobre el \textit{OPEX operativo} ---el costo del
+trabajo humano necesario para operar el sistema durante el periodo medido--- y no sobre el TCO.
+El TCO incluye CAPEX y costos de adquisición sobre los que ninguna reducción de fricción puede
+actuar; usarlo como denominador diluye el índice y vuelve inaplicables los rangos de
+interpretación que siguen.
+
+\textbf{Forma simplificada.} Cuando se usa un único costo hora promedio para todo el alcance, la
+tarifa aparece en ambos términos y se cancela, de modo que basta con contar horas:
+
+\[
+IK = \frac{\text{horas en fricciones evitables}}{\text{horas totales del alcance}} \times 100
+\]
+
+Ambas expresiones son el mismo cálculo. La forma en costo habla el lenguaje del CFO; la forma en
+horas es más rápida de obtener para un equipo y es la que se usa en los Quick Start del
+Apéndice~\ref{chap:aa}.
 
 Interpretación IK
 \begin{itemize}
-    \item IK bajo (0--15\%) → Sistema eficiente (zona verde). La mayor parte del esfuerzo operativo se dedica a crear valor. Las fricciones inevitables están bajo control.
+    \item IK bajo (<15\%) → Sistema eficiente (zona verde). La mayor parte del esfuerzo operativo se dedica a crear valor. Las fricciones inevitables están bajo control.
     \item IK moderado (15--25\%) → Ineficiencias moderadas (zona amarilla). El sistema funciona, pero hay fugas de eficiencia (duplicidades, manualidad, malas integraciones). Es momento de aplicar Kanso para reducir fricción.
     \item IK alto (>25\%) → Crisis operativa (zona roja). Una cuarta parte o más del gasto se pierde en overhead. Esto significa que la organización trabaja más para mantener el sistema que para hacer avanzar el negocio.
 \end{itemize}
 
 Comparación con métricas existentes:
 
-
-Ejemplo: Un sistema con TCO bajo puede tener IK alto si su operación requiere mucho trabajo manual."
-
 \begin{itemize}
-    \item TCO mide costo total de propiedad (CAPEX + OPEX)
-    \item IK mide qué porción del OPEX es desperdicio oculto
-    \item Ejemplo: Un sistema con TCO bajo puede tener IK alto si su operación requiere mucho trabajo manual."    
-\\
-\\
+    \item TCO mide el costo total de propiedad (CAPEX + OPEX).
+    \item IK mide qué porción del OPEX operativo es desperdicio oculto.
+    \item Ejemplo: un sistema con TCO bajo puede tener IK alto si su operación requiere mucho trabajo manual.
 \end{itemize}
 
 \hrule
@@ -662,7 +691,7 @@ Paso & Acción & Artefacto \\ \hline
 1 & Registrar la fricción detectada & Friction Ledger \\ \hline
 2 & Evaluar criterios inevitables/evitables & Checklist \\ \hline
 3 & Clasificar inevitable o evitable & Friction Ledger \\ \hline
-4 & Si evitable: lanzar Friction RCA y documentar \\ \hline
+4 & Si evitable: lanzar Friction RCA y documentar & Friction RCA \\ \hline
 5 & Si inevitable: documentar y contener & Harmony Board \\ \hline
 \end{tabular}
 \end{center}
